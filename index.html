@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faces do Abismo &mdash; Sobrevivência &amp; Sociedade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FACES DO ABISMO — Sobrevivência & Sociedade
+   Guia de aprofundamento e cola de mesa
+   Paleta "Abismo" + Almendra Display / EB Garamond
+   ============================================================ */
+
+:root{
+  --void:#050508;
+  --abyss:#0C0C14;
+  --card:#141420;
+  --line-strong:#1E1E2E;
+
+  --red:#E94560;
+  --gold:#C9A227;
+  --blue:#0F3460;
+  --green:#6B8E23;
+
+  --red-bright:#F1748C;
+  --gold-bright:#E3C04A;
+  --blue-bright:#6FA1E0;
+  --green-bright:#A6D24C;
+
+  --text:#E8E8E8;
+  --text-warm:#A0A0B0;
+  --text-dead:#6B6B7B;
+  --line-soft:#4A4A5A;
+
+  --f-display:'Almendra Display', 'Cormorant Garamond', serif;
+  --f-body:'EB Garamond', Georgia, serif;
+
+  --accent: var(--gold-bright);
+  --accent-fill: var(--gold);
+  --accent-wash: rgba(201,162,39,.10);
+}
+
+/* ---------- cores por capítulo ---------- */
+section.level1[data-color="gold"]{
+  --accent:var(--gold-bright); --accent-fill:var(--gold); --accent-wash:rgba(201,162,39,.12);
+}
+section.level1[data-color="red"]{
+  --accent:var(--red-bright); --accent-fill:var(--red); --accent-wash:rgba(233,69,96,.12);
+}
+section.level1[data-color="blue"]{
+  --accent:var(--blue-bright); --accent-fill:var(--blue); --accent-wash:rgba(111,161,224,.14);
+}
+section.level1[data-color="green"]{
+  --accent:var(--green-bright); --accent-fill:var(--green); --accent-wash:rgba(166,210,76,.12);
+}
+
+/* ---------- biomas (dentro do capítulo de exploração) ---------- */
+section.biome{ --biome-accent:var(--accent); }
+section.biome[data-biome="floresta"]{
+  --biome-accent:#A6D24C; --biome-fill:#6B8E23; --biome-wash:rgba(166,210,76,.12);
+}
+section.biome[data-biome="deserto"]{
+  --biome-accent:#E8B84B; --biome-fill:#B8862B; --biome-wash:rgba(232,184,75,.12);
+}
+section.biome[data-biome="vulcao"]{
+  --biome-accent:#F1748C; --biome-fill:#E94560; --biome-wash:rgba(233,69,96,.13);
+}
+section.biome[data-biome="gelo"]{
+  --biome-accent:#8FC7F0; --biome-fill:#4A8FC7; --biome-wash:rgba(143,199,240,.13);
+}
+
+.biome-head{
+  position:relative; margin:3.4rem 0 1.6rem; padding:1.6rem 1.8rem 1.5rem;
+  border:1px solid var(--line-strong); border-left:5px solid var(--biome-accent);
+  border-radius:12px; overflow:hidden;
+  background:
+    radial-gradient(ellipse 120% 160% at 0% 0%, var(--biome-wash), transparent 55%),
+    var(--card);
+}
+.biome-eyebrow{
+  font-weight:600; letter-spacing:.4em; text-transform:uppercase; font-size:.72rem;
+  color:var(--biome-accent); margin:0 0 .5rem; padding-left:.4em;
+}
+.biome-head h3{
+  font-family:var(--f-display); font-size:clamp(1.5rem,3.6vw,2rem); color:var(--biome-accent);
+  margin:0 0 .35rem; letter-spacing:.02em;
+}
+.biome-head .biome-tagline{ font-style:italic; color:var(--text-warm); margin:0; font-size:1rem; }
+.biome-head .biome-motif{
+  position:absolute; top:1.3rem; right:1.5rem; width:52px; height:52px; color:var(--biome-accent); opacity:.8;
+}
+.biome-head .biome-motif svg{ width:100%; height:100%; }
+
+section.biome h4.biome-sub{
+  font-family:var(--f-display); font-size:1.15rem; color:var(--biome-accent);
+  margin:2rem 0 .7rem; padding-bottom:.3rem; border-bottom:1px dashed var(--line-soft);
+}
+section.biome .styled-table thead th{ color:var(--biome-accent); border-bottom-color:var(--biome-accent); }
+section.biome .styled-table tbody tr:hover{ background:var(--biome-wash); }
+section.biome ul li::before{ color:var(--biome-accent); }
+section.biome p.label-strong{ color:var(--biome-accent); border-left-color:var(--biome-accent); }
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--text);
+  font-family:var(--f-body);
+  font-size:18.5px;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block;}
+a{ color:var(--gold-bright); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+::selection{ background:var(--gold); color:#1a1206; }
+
+::-webkit-scrollbar{ width:12px; height:12px; }
+::-webkit-scrollbar-track{ background:var(--void); }
+::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:6px; border:2px solid var(--void); }
+::-webkit-scrollbar-thumb:hover{ background:var(--line-soft); }
+
+:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+
+.reader{ max-width:740px; margin:0 auto; padding:0 30px; position:relative; }
+
+/* ============================================================
+   CAPA
+   ============================================================ */
+.cover{
+  min-height:100svh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse 55% 45% at 28% 38%, rgba(107,142,35,.10), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 72% 38%, rgba(15,52,96,.22), transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, var(--abyss), var(--void) 75%);
+  padding:6vh 24px;
+}
+.cover-motif{
+  width:200px; height:200px; border-radius:50%; position:relative; margin-bottom:3rem;
+  background:conic-gradient(from 210deg, var(--green-bright), var(--gold), var(--red), var(--blue-bright), var(--green-bright));
+  box-shadow:0 0 90px rgba(166,210,76,.16);
+}
+.cover-motif::before{
+  content:""; position:absolute; inset:14px; border-radius:50%;
+  background:radial-gradient(circle at 50% 42%, var(--abyss), var(--void) 72%);
+}
+.cover-motif::after{
+  content:""; position:absolute; left:50%; top:50%; width:22px; height:22px;
+  transform:translate(-50%,-50%); border-radius:50%;
+  background:linear-gradient(135deg, var(--green-bright) 50%, var(--blue-bright) 50%);
+  box-shadow:0 0 40px 10px rgba(111,161,224,.45);
+}
+.cover-eyebrow{
+  font-size:.78rem; letter-spacing:.55em; text-transform:uppercase; color:var(--text-dead);
+  margin:0 0 1.4rem; padding-left:.55em;
+}
+.cover-title{
+  font-family:var(--f-display); font-weight:400;
+  font-size:clamp(2.6rem, 8.5vw, 5.6rem); line-height:1.04; letter-spacing:.03em;
+  margin:0;
+  background:linear-gradient(180deg,#EAF6C8 0%, var(--green-bright) 45%, #4a6317 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 2px 60px rgba(166,210,76,.18);
+}
+.cover-title em{
+  font-style:normal; display:block;
+  background:linear-gradient(180deg,#D6E8FA 0%, var(--blue-bright) 45%, #274a78 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.cover-subtitle{
+  font-family:var(--f-body); font-weight:600; letter-spacing:.5em; text-transform:uppercase;
+  color:var(--text-warm); font-size:.9rem; margin-top:1.4rem; padding-left:.5em;
+}
+.cover-rule{ width:130px; height:1px; margin:2.4rem 0 2rem;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.cover-world{ font-family:var(--f-body); font-style:italic; color:var(--text-warm); font-size:1.05rem; max-width:42ch; }
+.cover-world b{ color:var(--gold-bright); font-weight:600; font-style:normal; }
+.cover-world b.g{ color:var(--green-bright); }
+.cover-world b.b{ color:var(--blue-bright); }
+.cover-hint{
+  position:absolute; bottom:5vh; left:0; right:0; text-align:center;
+  color:var(--text-dead); font-size:.78rem; letter-spacing:.15em; text-transform:uppercase;
+}
+
+/* ============================================================
+   SUMÁRIO
+   ============================================================ */
+.toc-page{ background:var(--abyss); padding:9vh 0 10vh; border-bottom:1px solid var(--line-strong); }
+.toc-heading{
+  font-family:var(--f-display); font-size:clamp(1.8rem,4vw,2.6rem); text-align:center;
+  color:var(--gold-bright); margin:0 0 .4rem;
+}
+.toc-sub{ text-align:center; color:var(--text-dead); font-size:.85rem; letter-spacing:.2em; text-transform:uppercase; margin:0 0 5rem; }
+
+.toc-chapter{ margin-bottom:2.6rem; padding-bottom:2rem; border-bottom:1px solid var(--line-strong); }
+.toc-chapter:last-child{ border-bottom:none; }
+.toc-chapter-head{ display:flex; align-items:baseline; gap:.9rem; margin-bottom:.9rem; }
+.toc-dot{ width:9px; height:9px; border-radius:50%; flex:none; background:var(--chip-color,var(--gold)); box-shadow:0 0 10px var(--chip-color,var(--gold)); }
+.toc-num{ font-family:var(--f-display); color:var(--chip-color,var(--gold-bright)); font-size:1.05rem; letter-spacing:.05em; }
+.toc-chapter-title a{
+  font-family:var(--f-display); font-size:1.35rem; color:var(--text); letter-spacing:.01em;
+}
+.toc-chapter-title a:hover{ color:var(--chip-color,var(--gold-bright)); text-decoration:none; }
+.toc-tagline{ color:var(--text-dead); font-size:.88rem; font-style:italic; margin:0 0 1rem; }
+
+.toc-sections{ columns:2 220px; column-gap:2.2rem; }
+.toc-sections a{
+  display:block; break-inside:avoid; padding:.32em 0; font-size:.93rem; color:var(--text-warm);
+  border-bottom:1px dotted var(--line-soft); line-height:1.4;
+}
+.toc-sections a:hover{ color:var(--gold-bright); text-decoration:none; }
+
+.toc-chips{ margin-top:.85rem; display:flex; flex-wrap:wrap; gap:.45em; column-span:all; }
+.toc-chip{
+  font-size:.72rem; padding:.22em .68em; border:1px solid var(--line-soft); border-radius:20px;
+  color:var(--text-dead); font-family:var(--f-body);
+}
+.toc-chip:hover{ color:var(--gold-bright); border-color:var(--gold); text-decoration:none; }
+
+/* ============================================================
+   CAPÍTULOS
+   ============================================================ */
+section.level1{ background:var(--void); position:relative; }
+section.level1:nth-of-type(even){ background:var(--abyss); }
+
+.chapter-head{
+  text-align:center; padding:11vh 24px 8vh; position:relative;
+  border-bottom:1px solid var(--line-strong); margin-bottom:3.4rem;
+}
+.chapter-motif{ width:64px; height:64px; margin:0 auto 2rem; position:relative; opacity:.9; color:var(--accent); }
+.chapter-motif svg{ width:100%; height:100%; }
+.chapter-eyebrow{
+  font-family:var(--f-body); font-weight:600; letter-spacing:.5em; text-transform:uppercase;
+  font-size:.78rem; color:var(--accent); margin:0 0 1.1rem; padding-left:.5em;
+}
+.chapter-head h1{
+  font-family:var(--f-display); font-weight:400; font-size:clamp(2.1rem,5.4vw,3.6rem);
+  letter-spacing:.02em; line-height:1.08; margin:0 auto .9rem; max-width:18ch;
+  color:var(--accent); text-shadow:0 2px 44px var(--accent-wash);
+}
+.chapter-tagline{
+  font-style:italic; color:var(--text-warm); max-width:44ch; margin:0 auto; font-size:1.08rem;
+}
+
+section.level2{ padding:0 0 .4rem; }
+section.level2 > h2:first-child{ margin-top:3.2rem; }
+
+h1,h2,h3,h4,h5{ font-family:var(--f-display); font-weight:400; color:var(--text); }
+
+.reader h2{
+  font-size:clamp(1.4rem,3.4vw,1.85rem); color:var(--accent); letter-spacing:.015em;
+  margin:3.1rem 0 1.15rem; padding-bottom:.5rem; border-bottom:1px solid var(--line-strong);
+}
+.reader h3{
+  font-size:1.32rem; color:var(--text); margin:2.3rem 0 .85rem; letter-spacing:.01em;
+}
+.reader h4{ font-size:1.12rem; color:var(--text-warm); margin:1.8rem 0 .7rem; }
+
+.entry-header{
+  display:flex; align-items:baseline; gap:.7em; flex-wrap:wrap;
+  border-left:3px solid var(--accent); padding:.15em 0 .15em .8em; margin:2.6rem 0 1.1rem !important;
+}
+h4.entry-header{ margin:2.1rem 0 .9rem !important; }
+.entry-header .entry-eyebrow{
+  font-family:var(--f-body); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dead);
+}
+.entry-header .entry-name{ font-family:var(--f-display); color:var(--accent); font-size:1.28rem; }
+h4.entry-header .entry-name{ font-size:1.1rem; }
+
+/* ============================================================
+   PARÁGRAFOS, DESTAQUES E RÓTULOS
+   ============================================================ */
+.reader p{ margin:0 0 1.05em; color:var(--text); }
+.reader p strong, .reader li strong{ color:var(--gold-bright); font-weight:600; }
+section[data-color="green"] .reader > p strong,
+section[data-color="green"] .reader section:not(.biome) li strong{ color:var(--green-bright); }
+section[data-color="blue"] .reader > p strong,
+section[data-color="blue"] .reader li strong{ color:var(--blue-bright); }
+
+p.kicker{
+  font-family:var(--f-display); text-align:center; letter-spacing:.09em; text-transform:uppercase;
+  font-size:1.08rem; color:var(--accent); margin:0 0 2.1rem !important;
+}
+p.label-strong{
+  font-weight:700; letter-spacing:.03em; color:var(--accent); font-size:1rem;
+  margin:1.5em 0 .35em !important; border-left:3px solid var(--accent); padding-left:.65em;
+}
+p.label-soft{
+  font-style:italic; font-weight:600; color:var(--text-warm); font-size:.96rem;
+  margin:1.2em 0 .25em !important; padding-left:.65em; border-left:3px solid var(--line-soft);
+}
+p.label-example{ color:var(--blue-bright); border-left-color:var(--blue-bright); }
+p.split-label{ margin:1em 0 .25em !important; font-size:.96rem; padding-left:.65em; border-left:3px solid var(--line-soft); }
+.tag-cap{ color:var(--text-dead); text-transform:uppercase; letter-spacing:.09em; font-size:.76em; margin-right:.55em; }
+.tag-val{ color:var(--accent); font-weight:700; }
+
+.reader .kicker strong, .reader .label-strong strong, .reader .label-soft strong,
+.reader .split-label strong, .reader .entry-header{ color:inherit; font-weight:inherit; }
+
+/* ============================================================
+   LISTAS
+   ============================================================ */
+.reader ul{ list-style:none; margin:0 0 1.3em; padding-left:0; }
+.reader ul li{ position:relative; padding-left:1.5em; margin-bottom:.55em; }
+.reader ul li::before{
+  content:"◆"; position:absolute; left:0; top:.32em; color:var(--accent); font-size:.6em;
+}
+.reader ol{ margin:0 0 1.3em 1.4em; padding-left:0; }
+.reader ol li{ margin-bottom:.55em; padding-left:.3em; }
+.reader ol li::marker{ color:var(--accent); font-weight:700; font-family:var(--f-display); }
+
+/* ============================================================
+   TABELAS
+   ============================================================ */
+.table-wrap{
+  overflow-x:auto; margin:1.9em 0; border:1px solid var(--line-strong); border-radius:8px;
+  background:var(--card);
+}
+table.styled-table{ width:100%; border-collapse:collapse; font-size:.95rem; min-width:420px; }
+.styled-table thead th{
+  text-align:left; padding:.68em .9em; font-family:var(--f-display); font-weight:400;
+  font-size:1.02rem; letter-spacing:.02em; color:var(--accent);
+  border-bottom:2px solid var(--accent); background:rgba(255,255,255,.025);
+  white-space:nowrap;
+}
+.styled-table tbody td{
+  padding:.58em .9em; border-bottom:1px solid var(--line-strong); color:var(--text-warm); vertical-align:top;
+}
+.styled-table tbody tr:nth-child(odd){ background:rgba(255,255,255,.018); }
+.styled-table tbody tr:hover{ background:var(--accent-wash); }
+.styled-table strong{ color:var(--text); font-weight:700; }
+.styled-table td:first-child, .styled-table th:first-child{ color:var(--text); }
+
+/* ============================================================
+   CALLOUTS
+   ============================================================ */
+.callout{
+  margin:2rem 0 2.4rem; padding:1.5em 1.7em 1.6em; border-radius:10px;
+  background:var(--card); border:1px solid var(--line-strong); position:relative;
+}
+.callout > h2:first-child{ margin-top:0 !important; border-bottom:none; padding-bottom:0; }
+
+.callout--cheat{ border-left:4px solid var(--blue-bright); }
+.callout--cheat::before{
+  content:"Cola Rápida"; display:inline-block; font-family:var(--f-body); font-weight:700;
+  font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--blue-bright);
+  border:1px solid var(--blue-bright); border-radius:20px; padding:.2em .8em; margin-bottom:.9em;
+}
+.callout--cheat h2{ color:var(--blue-bright); font-size:1.2rem; }
+.callout--cheat h3{ color:var(--blue-bright); font-size:1.05rem; margin-top:1.4rem; }
+
+.callout--warning{ border-left:4px solid var(--red-bright); background:linear-gradient(180deg, rgba(233,69,96,.06), var(--card) 40%); }
+.callout--warning::before{
+  content:"Erro do Mestre"; display:inline-block; font-family:var(--f-body); font-weight:700;
+  font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--red-bright);
+  border:1px solid var(--red-bright); border-radius:20px; padding:.2em .8em; margin-bottom:.9em;
+}
+.callout--warning h2{ color:var(--red-bright); font-size:1.2rem; }
+
+/* Dúvida de mesa — perguntas frequentes */
+.callout--duvida{ border-left:4px solid var(--gold-bright); background:linear-gradient(180deg, rgba(201,162,39,.05), var(--card) 45%); }
+.callout--duvida::before{
+  content:"Dúvidas de Mesa"; display:inline-block; font-family:var(--f-body); font-weight:700;
+  font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-bright);
+  border:1px solid var(--gold-bright); border-radius:20px; padding:.2em .8em; margin-bottom:1em;
+}
+.callout--duvida .qa{ margin-bottom:1.2rem; }
+.callout--duvida .qa:last-child{ margin-bottom:0; }
+.callout--duvida .qa-q{
+  font-family:var(--f-display); color:var(--gold-bright); font-size:1.05rem; margin:0 0 .3rem;
+}
+.callout--duvida .qa-q::before{ content:"? "; color:var(--text-dead); }
+.callout--duvida .qa-a{ margin:0; color:var(--text-warm); font-size:.97rem; }
+.callout--duvida .qa-a strong{ color:var(--text); }
+
+/* Ficha de encontro / bloco de perigo */
+.danger-block{
+  margin:1.6rem 0; padding:1.1em 1.4em; border-radius:8px;
+  border:1px solid var(--line-strong); border-left:4px solid var(--biome-accent, var(--accent));
+  background:rgba(255,255,255,.02); font-size:.97rem;
+}
+.danger-block .danger-name{
+  font-family:var(--f-display); color:var(--biome-accent, var(--accent)); font-size:1.05rem; margin:0 0 .35rem;
+}
+.danger-block p{ margin:0 0 .5em; font-size:.95rem; }
+.danger-block p:last-child{ margin-bottom:0; }
+
+/* Cartões de facção */
+.faction-card{
+  margin:1.8rem 0; padding:1.3em 1.6em 1.4em; border-radius:10px;
+  background:var(--card); border:1px solid var(--line-strong); border-top:3px solid var(--accent);
+}
+.faction-card .faction-head{
+  display:flex; align-items:baseline; gap:.7em; flex-wrap:wrap; margin-bottom:.5rem;
+}
+.faction-card .faction-race{
+  font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dead);
+  border:1px solid var(--line-soft); border-radius:20px; padding:.15em .7em;
+}
+.faction-card .faction-name{
+  font-family:var(--f-display); color:var(--accent); font-size:1.18rem;
+}
+.faction-card p{ font-size:.97rem; }
+.faction-card p.faction-flavor{ font-style:italic; color:var(--text-warm); }
+.faction-card .faction-tags{ display:flex; flex-wrap:wrap; gap:.8em 1.4em; margin-top:.7rem; font-size:.9rem; }
+.faction-card .faction-tags b{ display:block; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dead); margin-bottom:.15rem; }
+.faction-card .tag-love{ color:var(--green-bright); }
+.faction-card .tag-hate{ color:var(--red-bright); }
+
+blockquote{
+  margin:1.8em 0; padding:.15em 1.4em; border-left:3px solid var(--accent);
+  font-style:italic; color:var(--text-warm); background:rgba(255,255,255,.02); border-radius:0 6px 6px 0;
+}
+hr{ border:none; border-top:1px solid var(--line-strong); margin:2.6em 0; }
+
+/* ============================================================
+   COLOFÃO / FIM
+   ============================================================ */
+.colophon{
+  min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; background:var(--void); border-top:1px solid var(--line-strong); padding:8vh 24px;
+}
+.colophon .cover-motif{ width:120px; height:120px; margin-bottom:2.2rem; }
+.colophon h2{ font-size:2rem; color:var(--gold-bright); margin:0 0 .6rem; }
+.colophon p{ color:var(--text-dead); font-size:.9rem; max-width:40ch; }
+
+/* ============================================================
+   NAVEGAÇÃO FLUTUANTE
+   ============================================================ */
+.app-nav{
+  position:fixed; top:0; left:0; bottom:0; width:230px; padding:5vh 0 5vh 28px;
+  display:flex; flex-direction:column; gap:.35rem; z-index:40; overflow-y:auto;
+  background:linear-gradient(90deg, var(--void) 60%, transparent);
+  pointer-events:none;
+}
+.app-nav a{ pointer-events:auto; }
+.nav-brand{
+  font-family:var(--f-display); color:var(--gold-bright); font-size:.95rem; letter-spacing:.1em;
+  margin-bottom:1.4rem; text-transform:uppercase; opacity:.85;
+}
+.nav-item{
+  display:flex; align-items:center; gap:.65em; padding:.4em .6em .4em 0; border-radius:6px;
+  color:var(--text-dead); font-size:.82rem; letter-spacing:.02em; transition:color .15s;
+}
+.nav-item:hover, .nav-item.active{ color:var(--text); text-decoration:none; }
+.nav-item .nav-dot{ width:7px; height:7px; border-radius:50%; flex:none; background:var(--dot,var(--gold)); box-shadow:0 0 0 0 transparent; }
+.nav-item.active .nav-dot{ box-shadow:0 0 8px var(--dot,var(--gold)); }
+.nav-item span.lbl{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.nav-item.nav-sub{ padding-left:1.9em; font-size:.78rem; }
+
+.print-fab{
+  position:fixed; bottom:2rem; right:2rem; z-index:50; display:flex; align-items:center; gap:.6em;
+  background:var(--gold-bright); color:#1a1206; padding:.85em 1.35em; border-radius:32px;
+  font-family:var(--f-body); font-weight:700; font-size:.92rem; letter-spacing:.02em;
+  box-shadow:0 10px 34px rgba(0,0,0,.55); cursor:pointer; border:none;
+}
+.print-fab:hover{ background:#F3D77A; }
+.print-fab svg{ width:17px; height:17px; }
+
+.mobile-toggle{
+  display:none; position:fixed; top:1.1rem; left:1.1rem; z-index:60; width:42px; height:42px;
+  border-radius:50%; background:var(--card); border:1px solid var(--line-strong); color:var(--text);
+  align-items:center; justify-content:center; cursor:pointer;
+}
+
+@media (max-width:980px){
+  .app-nav{
+    transform:translateX(-100%); transition:transform .25s ease; background:var(--abyss);
+    width:78vw; max-width:300px; box-shadow:4px 0 30px rgba(0,0,0,.5); padding-left:24px;
+  }
+  .app-nav.open{ transform:translateX(0); }
+  .mobile-toggle{ display:flex; }
+}
+@media (max-width:640px){
+  body{ font-size:17px; }
+  .reader{ padding:0 20px; }
+  .toc-sections{ columns:1; }
+  .chapter-head{ padding:9vh 16px 6vh; }
+  .print-fab span{ display:none; }
+  .print-fab{ padding:.9em; border-radius:50%; }
+  .cover-eyebrow, .cover-subtitle, .chapter-eyebrow{ letter-spacing:.18em; }
+  .cover-hint{ letter-spacing:.08em; padding:0 12px; }
+  .cover-world{ font-size:.96rem; }
+  .biome-head .biome-motif{ display:none; }
+}
+
+/* ============================================================
+   IMPRESSÃO / EXPORTAÇÃO PDF
+   ============================================================ */
+@media print{
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .app-nav, .print-fab, .mobile-toggle, .cover-hint{ display:none !important; }
+  a{ color:inherit; }
+  .reader{ max-width:100%; }
+  section.level1{ page-break-before:always; }
+  section.level1:first-of-type{ page-break-before:avoid; }
+  .chapter-head, .toc-chapter{ page-break-after:avoid; }
+  h2,h3,h4,.entry-header{ page-break-after:avoid; }
+  table,.callout,blockquote,.chapter-motif,.cover-motif,.biome-head,.faction-card,.danger-block{ page-break-inside:avoid; }
+  .cover{ page-break-after:always; min-height:100vh; }
+  @page{ size:A4; margin:16mm 15mm; }
+}
+
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" id="mobileToggle" aria-label="Abrir navegação"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg></button>
+
+<nav class="app-nav" id="appNav">
+<div class="nav-brand">Faces do Abismo</div>
+<a class="nav-item" data-target="recuperacao-sobrevivencia-exploracao" href="#recuperacao-sobrevivencia-exploracao" style="--dot:#A6D24C"><span class="nav-dot"></span><span class="lbl">Sobrevivência &amp; Exploração</span></a>
+<a class="nav-item nav-sub" data-target="descanso-e-recuperacao" href="#descanso-e-recuperacao" style="--dot:#A6D24C"><span class="nav-dot"></span><span class="lbl">Descanso e Recuperação</span></a>
+<a class="nav-item nav-sub" data-target="fome-sede-clima" href="#fome-sede-clima" style="--dot:#A6D24C"><span class="nav-dot"></span><span class="lbl">Fome, Sede e Clima</span></a>
+<a class="nav-item nav-sub" data-target="os-quatro-dominios" href="#os-quatro-dominios" style="--dot:#E3C04A"><span class="nav-dot"></span><span class="lbl">Os Quatro Domínios</span></a>
+<a class="nav-item nav-sub" data-target="ferramentas-do-explorador" href="#ferramentas-do-explorador" style="--dot:#A6D24C"><span class="nav-dot"></span><span class="lbl">Ferramentas do Explorador</span></a>
+<a class="nav-item" data-target="regras-sociais-faccoes" href="#regras-sociais-faccoes" style="--dot:#6FA1E0"><span class="nav-dot"></span><span class="lbl">Regras Sociais &amp; Facções</span></a>
+<a class="nav-item nav-sub" data-target="posturas-sociais" href="#posturas-sociais" style="--dot:#6FA1E0"><span class="nav-dot"></span><span class="lbl">Posturas Sociais</span></a>
+<a class="nav-item nav-sub" data-target="o-confronto-social" href="#o-confronto-social" style="--dot:#6FA1E0"><span class="nav-dot"></span><span class="lbl">O Confronto Social</span></a>
+<a class="nav-item nav-sub" data-target="reputacao-e-faccoes" href="#reputacao-e-faccoes" style="--dot:#6FA1E0"><span class="nav-dot"></span><span class="lbl">Reputação e Facções</span></a>
+<a class="nav-item nav-sub" data-target="a-cidade-como-tabuleiro" href="#a-cidade-como-tabuleiro" style="--dot:#6FA1E0"><span class="nav-dot"></span><span class="lbl">A Cidade como Tabuleiro</span></a>
+</nav>
+
+<button class="print-fab" id="printBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Baixar como PDF</span></button>
+
+
+<header class="cover">
+  <p class="cover-eyebrow">Guia de Aprofundamento &middot; Cola de Mesa</p>
+  <div class="cover-motif" aria-hidden="true"></div>
+  <h1 class="cover-title">Sobrevivência <em>&amp; Sociedade</em></h1>
+  <p class="cover-subtitle">Faces do Abismo</p>
+  <div class="cover-rule"></div>
+  <p class="cover-world">Lá fora, o <b class="g">mundo selvagem</b> tenta te matar. Aqui dentro, as <b class="b">palavras</b> fazem isso sem sujar a lâmina. Um guia para durar na floresta e vencer no salão.</p>
+  <p class="cover-hint">Role a página para começar &middot; NEXIA</p>
+</header>
+
+
+<section class="toc-page"><div class="reader">
+<h2 class="toc-heading">Sumário</h2>
+<p class="toc-sub">Faces do Abismo &middot; Sobrevivência &amp; Sociedade</p>
+
+<div class="toc-chapter" style="--chip-color:#A6D24C">
+<div class="toc-chapter-head">
+<span class="toc-dot"></span><span class="toc-num">I</span>
+<span class="toc-chapter-title"><a href="#recuperacao-sobrevivencia-exploracao">Recuperação, Sobrevivência e Exploração</a></span>
+</div>
+<p class="toc-tagline">O corpo cansa, o mundo resiste — e cada bioma cobra um preço diferente.</p>
+<nav class="toc-sections">
+<a href="#filosofia-da-recuperacao">A Filosofia da Recuperação</a>
+<a href="#descanso-e-recuperacao">Descanso e Recuperação</a>
+<a href="#tratamento-e-cura">Tratamento e Cura</a>
+<a href="#fome-sede-clima">Fome, Sede e Clima</a>
+<a href="#viagem-e-marcha">Viagem e Marcha</a>
+<a href="#os-quatro-dominios">Os Quatro Domínios</a>
+<a href="#ferramentas-do-explorador">Ferramentas do Explorador</a>
+<a href="#cola-exploracao">Cola Ultrarrápida — Exploração</a>
+<div class="toc-chips">
+<a class="toc-chip" href="#biome-floresta">Floresta</a>
+<a class="toc-chip" href="#biome-deserto">Deserto</a>
+<a class="toc-chip" href="#biome-vulcao">Vulcão</a>
+<a class="toc-chip" href="#biome-gelo">Gelo</a>
+</div>
+</nav></div>
+
+<div class="toc-chapter" style="--chip-color:#6FA1E0">
+<div class="toc-chapter-head">
+<span class="toc-dot"></span><span class="toc-num">II</span>
+<span class="toc-chapter-title"><a href="#regras-sociais-faccoes">Regras Sociais e Facções</a></span>
+</div>
+<p class="toc-tagline">Palavras, posturas e o jogo silencioso do poder — entre muros de pedra e vidraças.</p>
+<nav class="toc-sections">
+<a href="#filosofia-da-palavra">A Filosofia da Palavra</a>
+<a href="#posturas-sociais">Posturas Sociais</a>
+<a href="#o-confronto-social">O Confronto Social</a>
+<a href="#estados-sociais">Estados Sociais</a>
+<a href="#reputacao-e-faccoes">Reputação e Facções</a>
+<a href="#as-faccoes-de-nexia">As Facções de Nexia</a>
+<a href="#a-cidade-como-tabuleiro">A Cidade como Tabuleiro</a>
+<a href="#cola-social">Cola Ultrarrápida — Social</a>
+</nav></div>
+</div></section>
+
+<main>
+
+<!-- ============================================================
+     CAPÍTULO I — RECUPERAÇÃO, SOBREVIVÊNCIA E EXPLORAÇÃO
+     ============================================================ -->
+<section class="level1 chapter" data-color="green" id="recuperacao-sobrevivencia-exploracao"><header class="chapter-head"><div aria-hidden="true" class="chapter-motif"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="50" fill="none" opacity="0.32" r="46" stroke="currentColor" stroke-width="1"></circle>
+<path d="M50 12 C60 30 78 38 78 58 A28 28 0 0 1 22 58 C22 38 40 30 50 12 Z" fill="none" opacity="0.85" stroke="currentColor" stroke-width="1.2"></path>
+<path d="M50 34 C55 44 63 48 63 59 A13 13 0 0 1 37 59 C37 48 45 44 50 34 Z" fill="none" opacity="0.6" stroke="currentColor" stroke-width="1"></path>
+<circle cx="50" cy="62" fill="currentColor" r="3.5"></circle>
+</svg></div><p class="chapter-eyebrow">Capítulo I</p><h1>RECUPERAÇÃO, SOBREVIVÊNCIA E EXPLORAÇÃO</h1><p class="chapter-tagline">O corpo cansa e o mundo resiste — aprofundamento, dúvidas e cola para durar mais um dia.</p></header><div class="reader">
+
+<section class="level2" id="filosofia-da-recuperacao">
+<h2>A FILOSOFIA DA RECUPERAÇÃO</h2>
+<p>Em <strong>Faces do Abismo</strong>, recuperar-se não é uma transação automática. Dormir numa cama macia de estalagem é diferente de dormir encurvado sob uma árvore em terra encharcada. Curar um ferimento com agulha e linha é diferente de selar a carne com Mana.</p>
+<p>O sistema inteiro de recuperação responde a três perguntas:</p>
+<ol>
+<li><p><strong>Quanto tempo você tem?</strong></p></li>
+<li><p><strong>Quão seguro é o ambiente?</strong></p></li>
+<li><p><strong>O que você está disposto a gastar?</strong></p></li>
+</ol>
+<p>Se a resposta for <em>"uma hora, num pântano, sem recursos"</em>, a recuperação será o que a situação permite. Nada mais.</p>
+<blockquote>O erro mais comum de mesa é tratar descanso como botão de reiniciar. Descanso é uma decisão tática: custa tempo, expõe o grupo e gasta recursos. Quem descansa mal, luta mal.</blockquote>
+</section>
+
+<section class="level2" id="descanso-e-recuperacao">
+<h2>DESCANSO E RECUPERAÇÃO</h2>
+<p>Existem três categorias de descanso. A condição do ambiente determina o que cada uma oferece.</p>
+
+<h3 class="entry-header"><span class="entry-eyebrow">10+ minutos</span><span class="entry-name">Descanso Breve</span></h3>
+<p class="split-label"><strong><span class="tag-cap">Condição</span> <span class="tag-val">Sem combate, fuga ou tarefas complexas</span></strong></p>
+<ul>
+<li><p>Permite usar <strong>Kit Médico</strong> para tratar ferimentos.</p></li>
+<li><p>Permite usar <strong>Kit de Reparos</strong> para consertar equipamentos.</p></li>
+<li><p>Reduz <strong>Cansaço em 1 ponto</strong>.</p></li>
+<li><p><strong>Não</strong> recupera PV, Mana ou Lanto.</p></li>
+</ul>
+<p>Um Descanso Breve não é uma pausa heroica. É o momento de verificar se a lâmina ainda corta e se a perna aguenta correr.</p>
+
+<h3 class="entry-header"><span class="entry-eyebrow">6+ horas</span><span class="entry-name">Descanso Longo</span></h3>
+<p class="split-label"><strong><span class="tag-cap">Condição</span> <span class="tag-val">Abrigo básico, água e temperatura suportável</span></strong></p>
+<ul>
+<li><p>Recupera <strong>todos os PV</strong>, <strong>Mana</strong> e <strong>Lanto</strong>.</p></li>
+<li><p>Reduz Cansaço <strong>pela metade</strong> (arredondado para baixo).</p></li>
+<li><p>Remove condições físicas leves (Sangrando, Lento I) que não exijam tratamento médico específico.</p></li>
+</ul>
+<p class="label-soft"><strong>Se as condições forem precárias (sem abrigo, sem água, clima extremo):</strong></p>
+<ul>
+<li><p>Recupera apenas <strong>metade dos PV</strong> (arredondado para cima) e <strong>metade da Mana/Lanto</strong>.</p></li>
+<li><p>Reduz apenas <strong>2 pontos de Cansaço</strong>.</p></li>
+<li><p>Condições <strong>não</strong> são removidas automaticamente.</p></li>
+</ul>
+
+<h3 class="entry-header"><span class="entry-eyebrow">24 horas</span><span class="entry-name">Descanso Completo</span></h3>
+<p class="split-label"><strong><span class="tag-cap">Condição</span> <span class="tag-val">Ambiente seguro: assentamento, base, fortaleza</span></strong></p>
+<ul>
+<li><p>Recupera <strong>todos</strong> os PV, Mana e Lanto.</p></li>
+<li><p>Remove <strong>todo o Cansaço</strong>.</p></li>
+<li><p>Remove condições físicas de até <strong>Grau II</strong>, desde que haja tratamento ou medicamentos.</p></li>
+<li><p>Permite reparos complexos, preparação alquímica e rituais de evolução.</p></li>
+</ul>
+
+<p class="label-strong"><strong>REGRA DO SEGUNDO SONO</strong></p>
+<p>O grupo não pode obter os benefícios de um segundo Descanso Longo consecutivo dentro de 24 horas sem uma mudança significativa de local, atividade ou condição. Acordar, andar dez metros e voltar a dormir não conta.</p>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">Posso acumular dois Descansos Breves seguidos para reduzir 2 de Cansaço?</p>
+<p class="qa-a">Sim, desde que cada um tenha <strong>10 minutos reais de inatividade</strong> e a situação permita. O limite natural é a paciência do mundo ao redor: dois Descansos Breves num corredor de dungeon são 20 minutos de barulho, luz e cheiro.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Se estou com Cansaço 5 e faço um Descanso Longo, reduzo para quanto?</p>
+<p class="qa-a">Pela metade, arredondado <strong>para baixo</strong>: Cansaço 5 → 2. Em condições precárias, seria apenas −2 (ficaria com 3).</p>
+</div>
+<div class="qa">
+<p class="qa-q">O que conta como "abrigo básico" para o Descanso Longo completo?</p>
+<p class="qa-a">Tenda montada, caverna seca, ruína protegida, cabana. A chave é <strong>proteção contra clima e surpresa</strong>. Dormir ao relento em noite limpa e segura fica a critério do Mestre — via de regra, conta como precário.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Condição de Grau II some com Descanso Longo em taverna?</p>
+<p class="qa-a">Não. Condições de Grau II exigem <strong>Descanso Completo</strong> (24h em ambiente seguro) <strong>e</strong> tratamento ou medicamentos. O Descanso Longo só remove condições leves como Sangrando e Lento I.</p>
+</div>
+</div>
+
+<div class="callout callout--cheat">
+<h2>Descanso em 3 linhas</h2>
+<p><strong>Breve (10 min):</strong> −1 Cansaço, permite kits. Nada de PV/Mana.</p>
+<p><strong>Longo (6h + abrigo):</strong> PV e Mana/Lanto cheios, Cansaço pela metade, remove condições leves. Precário? Tudo pela metade, −2 Cansaço.</p>
+<p><strong>Completo (24h seguro):</strong> zera tudo, remove Grau II com tratamento, libera rituais e reparos.</p>
+</div>
+</section>
+
+<section class="level2" id="tratamento-e-cura">
+<h2>TRATAMENTO E CURA</h2>
+
+<h3 class="entry-header"><span class="entry-eyebrow">Fora de combate</span><span class="entry-name">Cura com Medicina</span></h3>
+<p class="split-label"><strong><span class="tag-cap">Teste</span> <span class="tag-val">Intelecto + Medicina — DV Moderada (8)</span></strong></p>
+<p class="split-label"><strong><span class="tag-cap">Requisito</span> <span class="tag-val">Kit Médico com usos restantes &middot; ~10 minutos</span></strong></p>
+<ul>
+<li><p><strong>Sucesso:</strong> o alvo recupera <strong>1d6 + Intelecto do tratante</strong> em PV.</p></li>
+<li><p><strong>Eco:</strong> recupera o dobro do bônus de Intelecto (1d6+4 vira 1d6+8).</p></li>
+<li><p><strong>Afogamento:</strong> gasta 1 uso do Kit e o ferimento piora — alvo sofre <strong>1d4 de dano</strong> (infecção, erro cirúrgico, reação adversa).</p></li>
+<li><p><strong>Limite:</strong> um mesmo personagem só se beneficia de tratamento medicinal fora de combate <strong>uma vez por ferimento grave</strong>. O corpo precisa de tempo para cicatrizar.</p></li>
+</ul>
+
+<h3 class="entry-header"><span class="entry-eyebrow">Combate / emergência</span><span class="entry-name">Estabilizar</span></h3>
+<p class="split-label"><strong><span class="tag-cap">Ação</span> <span class="tag-val">Principal &middot; Intelecto + Medicina — DV Fácil (14)</span></strong></p>
+<ul>
+<li><p><strong>Sucesso:</strong> uma criatura a 0 PV para de sangrar e não faz testes de Resistência à Morte por <strong>1 rodada</strong>.</p></li>
+<li><p>Se o estabilizado ficar <strong>2 rodadas sem receber dano</strong>, acorda com <strong>1 PV</strong>.</p></li>
+</ul>
+
+<h3 class="entry-header"><span class="entry-eyebrow">Mana &amp; Lanto</span><span class="entry-name">Cura Mágica</span></h3>
+<p>Cura mágica segue o <strong>Mercado de Habilidades</strong>: é rápida, mas cara. Em combate, curar compete com a Ação Principal — curar um aliado significa não atacar, não se reposicionar, não conjurar efeito ofensivo. Essa escolha é intencional.</p>
+<p class="label-example"><strong>EXEMPLO — "SELO VITAL"</strong></p>
+<p>Canalizar Mana para fechar ferimentos. Essência: Mana — Corrente Hídrica ou Pyroclasta (cauterização). Forma: Vestígio (toque). Efeito: 2d6 PV (Potência 3). Custo: 2 Mana.</p>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">Posso tratar o mesmo ferimento duas vezes com dois médicos diferentes?</p>
+<p class="qa-a">Não. O limite é <strong>por ferimento</strong>, não por médico: um ferimento só aceita um tratamento até ocorrer um Descanso Longo ou uma intervenção significativamente diferente (magia, cirurgia completa, ervas raras).</p>
+</div>
+<div class="qa">
+<p class="qa-q">Estabilizar recupera PV?</p>
+<p class="qa-a">Não diretamente. Estabilizar <strong>interrompe a morte iminente</strong>; o personagem só acorda com 1 PV se passar 2 rodadas sem sofrer dano. Se levar dano nesse intervalo, o relógio reinicia.</p>
+</div>
+<div class="qa">
+<p class="qa-q">O Afogamento na Medicina consome o uso do Kit mesmo falhando?</p>
+<p class="qa-a">Sim — o Afogamento representa exatamente isso: o recurso foi gasto e a situação piorou (1d4 de dano no paciente).</p>
+</div>
+<div class="qa">
+<p class="qa-q">Cura mágica também tem limite de "uma vez por ferimento"?</p>
+<p class="qa-a">Não. O limite é da <strong>medicina mundana</strong>. Cura mágica pode ser repetida — o freio é o custo de Mana e a economia de ações, não o corpo do paciente.</p>
+</div>
+</div>
+</section>
+
+<section class="level2" id="fome-sede-clima">
+<h2>FOME, SEDE E CLIMA</h2>
+<p>Nexia não perdoa quem ignora o corpo. A falta de água e comida não reduz PV diretamente — <strong>acumula Cansaço</strong>, e o Cansaço corrói tudo o que você tenta fazer.</p>
+
+<h3>FOME E SEDE</h3>
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Privação</th><th>Efeito</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>Sem água por 24h</strong></td><td>+2 Cansaço. Teste de Corpo + Resistência (DV 14) ou +2 Cansaço adicionais.</td></tr>
+<tr class="even"><td><strong>Sem água por 48h</strong></td><td>+4 Cansaço total no segundo dia. Deslocamento −2m.</td></tr>
+<tr class="odd"><td><strong>Sem comida por 48h</strong></td><td>+1 Cansaço.</td></tr>
+<tr class="even"><td><strong>Sem comida por 7 dias</strong></td><td>+1 Cansaço adicional por dia. Espírito e Corpo considerados −1 para o Cansaço Máximo.</td></tr>
+</tbody>
+</table></div>
+<p><strong>Recuperação:</strong> beber água limpa remove a penalidade de sede em 1 hora. Uma refeição decente remove a penalidade de fome após um Descanso Longo.</p>
+
+<h3>CLIMA EXTREMO</h3>
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Condição</th><th>Efeito Mecânico</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>Calor Extremo</strong></td><td>Corpo + Resistência (DV 10) a cada 4 horas. Falha: +1 Cansaço.</td></tr>
+<tr class="even"><td><strong>Frio Extremo</strong></td><td>Corpo + Resistência (DV 8) a cada 2 horas. Falha: +1 Cansaço e Deslocamento −1m.</td></tr>
+<tr class="odd"><td><strong>Tempestade</strong></td><td>Instinto + Sobrevivência (DV 10) para montar acampamento. Falha: sem Descanso Longo.</td></tr>
+<tr class="even"><td><strong>Nevoeiro / Neblina</strong></td><td>+2 no Resultado de Percepção e Pontaria.</td></tr>
+<tr class="odd"><td><strong>Altitude</strong></td><td>Corpo + Resistência (DV 6) por dia. Falha: +2 Cansaço.</td></tr>
+</tbody>
+</table></div>
+<p>Vertentes e traços raciais podem ignorar ou mitigar esses efeitos — um Anão Sangue-de-Ferro ignora calor comum, um Elfo Quartzo ignora frio extremo. Consulte a Vertente antes de pedir o teste.</p>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">Cansaço de sede acumula com Cansaço de clima?</p>
+<p class="qa-a">Sim. Fontes diferentes de Cansaço se somam. Um deserto pode cobrar +2 de sede e +1 de calor no mesmo dia — por isso a preparação (cantil, ritmo, horário de marcha) é a verdadeira armadura do explorador.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Se eu recuperar água depois de 48h sem beber, o Cansaço some na hora?</p>
+<p class="qa-a">A <strong>penalidade de sede</strong> some em 1 hora. O Cansaço acumulado <strong>não</strong> — ele só sai com descanso (Breve −1, Longo pela metade, Completo zera).</p>
+</div>
+<div class="qa">
+<p class="qa-q">O teste de clima é individual ou do grupo?</p>
+<p class="qa-a">Individual — cada corpo reage ao clima. Mas o Mestre pode rolar um teste único para PNJs e montarias para não travar a mesa.</p>
+</div>
+</div>
+</section>
+
+<section class="level2" id="viagem-e-marcha">
+<h2>VIAGEM E MARCHA</h2>
+<p>O grupo escolhe um ritmo. O ritmo determina distância, custo em Cansaço e o quanto o grupo está vulnerável.</p>
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Ritmo</th><th>Distância/Dia</th><th>Cansaço/Dia</th><th>Risco de Emboscada</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>Normal</strong></td><td>Base</td><td>+0</td><td>Padrão</td></tr>
+<tr class="even"><td><strong>Rápida</strong></td><td>+50%</td><td>+2</td><td>+2 no Resultado (piora) de Percepção para detectar ameaças</td></tr>
+<tr class="odd"><td><strong>Forçada</strong></td><td>+100%</td><td>+4</td><td>Se houver inimigo à espreita com abordagem bem-sucedida, o grupo começa <strong>Surpreendido</strong> e perde a prioridade da iniciativa</td></tr>
+<tr class="even"><td><strong>Cautelosa</strong></td><td>−50%</td><td>+0</td><td>−2 no Resultado (melhora) de Percepção para detectar ameaças</td></tr>
+</tbody>
+</table></div>
+<p class="label-strong"><strong>TERRENO DIFÍCIL</strong></p>
+<p>Floresta densa, montanha, pântano e ruínas reduzem a distância base em <strong>50%</strong> antes de aplicar o modificador de ritmo. Marcha forçada em pântano não é velocidade — é autoflagelo.</p>
+
+<h3 class="entry-header"><span class="entry-eyebrow">Fim do dia</span><span class="entry-name">Acampamento</span></h3>
+<p class="split-label"><strong><span class="tag-cap">Teste</span> <span class="tag-val">Instinto + Sobrevivência — DV conforme o terreno (Fácil 14 em campo aberto, Difícil 6 em pântano)</span></strong></p>
+<ul>
+<li><p><strong>Sucesso:</strong> o grupo usufrui Descanso Longo mesmo em ambiente selvagem.</p></li>
+<li><p><strong>Falha:</strong> o descanso conta como Breve.</p></li>
+<li><p><strong>Afogamento:</strong> o acampamento atrai atenção indesejada, gera uma condição ambiental ou danifica equipamento.</p></li>
+</ul>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">Quem rola o teste de acampamento?</p>
+<p class="qa-a">Quem <strong>lidera</strong> a montagem. Outros personagens podem ajudar de forma narrativa (buscar lenha, montar vigia) e o Mestre pode conceder melhoria no Resultado conforme a contribuição descrita.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Marcha forçada por vários dias seguidos é possível?</p>
+<p class="qa-a">Mecanicamente sim — mas +4 de Cansaço por dia corrói rápido qualquer grupo, e Cansaço alto degrada testes, combate e deslocamento. É ferramenta de emergência, não de rotina.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Terreno difícil e ritmo se acumulam?</p>
+<p class="qa-a">Sim, e na ordem certa: primeiro o terreno corta a base pela metade, depois o ritmo modifica o resultado. Ex.: base 30 km → pântano 15 km → marcha rápida 22,5 km.</p>
+</div>
+</div>
+</section>
+
+<!-- OS QUATRO DOMÍNIOS -->
+<section class="level2" id="os-quatro-dominios">
+<h2>OS QUATRO DOMÍNIOS</h2>
+<p>Nexia testa o corpo de formas diferentes conforme a terra que se pisa. Os quatro domínios abaixo não substituem as regras de clima e viagem — <strong>eles as combinam</strong>, cada um com seus testes típicos, perigos recorrentes e recursos que só existem ali. Use como referência de preparação e como cola durante a sessão.</p>
+<p class="label-soft"><strong>Como ler:</strong> cada domínio traz os modificadores ambientais ativos, os testes que o Mestre mais pede, os perigos clássicos e uma nota de preparação para o grupo.</p>
+
+<section class="biome" data-biome="floresta" id="biome-floresta">
+<div class="biome-head">
+<p class="biome-eyebrow">Domínio I</p>
+<h3>A FLORESTA PROFUNDA</h3>
+<p class="biome-tagline">Luz filtrada, chão vivo, e tudo o que observa sem ser visto.</p>
+<div class="biome-motif" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"><path d="M50 10 L74 48 L60 48 L80 78 L20 78 L40 48 L26 48 Z"></path><line x1="50" y1="78" x2="50" y2="92"></line></svg></div>
+</div>
+<p>A floresta densa é <strong>terreno difícil</strong> por definição: distância base cortada pela metade, visibilidade curta e som constante. Quem cresce, caça e morre ali faz isso em silêncio.</p>
+<h4 class="biome-sub">Condições ativas</h4>
+<ul>
+<li><p><strong>Penumbra permanente</strong> sob a copa fechada: +2 no Resultado de Percepção e ataques à distância; deslocamento −25% para quem não conhece o ambiente.</p></li>
+<li><p><strong>Terreno difícil:</strong> distância de viagem −50% antes do ritmo.</p></li>
+<li><p><strong>Rastros abundantes:</strong> Instinto + Rastrear (DV 10) encontra pegadas, trilhas e sinais de passagem — da presa ou do predador.</p></li>
+</ul>
+<h4 class="biome-sub">Perigos clássicos</h4>
+<div class="danger-block">
+<p class="danger-name">Emboscada de copa</p>
+<p>Predadores e caçadores atacam de cima. Quem viaja em ritmo Rápido sofre a penalidade de Percepção normalmente — e na floresta, isso costuma bastar para começar <strong>Surpreendido</strong>.</p>
+</div>
+<div class="danger-block">
+<p class="danger-name">Desorientação</p>
+<p>Sem mapa ou guia, teste de Instinto + Sobrevivência (DV 8 em mata selvagem). Falha: o grupo vagueia 1d4 horas. Afogamento: vocês saem exatamente onde não deveriam — uma clareira marcada, um ninho, um território Kith.</p>
+</div>
+<div class="danger-block">
+<p class="danger-name">Chuva e lama</p>
+<p>Chuva prolongada transforma trilha em pântano: o teste de acampamento cai para DV 6 e o fogo só acende com perícia ou alquimia.</p>
+</div>
+<h4 class="biome-sub">O que a floresta oferece</h4>
+<ul>
+<li><p><strong>Coleta:</strong> Intelecto + Natureza (DV 10) rende 1d4 porções de comida ou componentes alquímicos comuns por dia.</p></li>
+<li><p><strong>Água:</strong> córregos e chuva facilitam a sede — mas água parada exige fervura ou teste de Resistência.</p></li>
+<li><p><strong>Abrigo natural:</strong> ocos de árvore e copas de gigantes contam como abrigo básico para Descanso Longo.</p></li>
+</ul>
+<div class="callout callout--cheat">
+<h2>Cola — Floresta</h2>
+<p><strong>Testes do dia:</strong> Sobrevivência DV 8 (orientação), Rastrear DV 10, Acampamento DV 10 (ou 6 com chuva).</p>
+<p><strong>Punição natural:</strong> ritmo Rápido aqui é convite a emboscada; cobre o dobro de encontros à espreita.</p>
+<p><strong>Recompensa natural:</strong> comida e água fáceis — o perigo da floresta não é morrer de fome, é ser comido.</p>
+</div>
+</section>
+
+<section class="biome" data-biome="deserto" id="biome-deserto">
+<div class="biome-head">
+<p class="biome-eyebrow">Domínio II</p>
+<h3>O DESERTO SEM NOME</h3>
+<p class="biome-tagline">De dia o céu cozinha, de noite a areia gela — e a miragem nunca avisa.</p>
+<div class="biome-motif" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"><circle cx="50" cy="38" r="14"></circle><path d="M10 72 Q30 60 50 72 T90 72"></path><path d="M20 84 Q40 74 60 84 T92 84" opacity="0.6"></path><line x1="50" y1="18" x2="50" y2="10"></line><line x1="24" y1="38" x2="16" y2="38"></line><line x1="76" y1="38" x2="84" y2="38"></line></svg></div>
+</div>
+<p>O deserto mata pela conta-gotas: água, Cansaço, direção. É o domínio onde a <strong>gestão de recursos</strong> decide mais que qualquer espada.</p>
+<h4 class="biome-sub">Condições ativas</h4>
+<ul>
+<li><p><strong>Calor Extremo diurno:</strong> Corpo + Resistência (DV 10) a cada 4 horas. Falha: +1 Cansaço.</p></li>
+<li><p><strong>Frio Extremo noturno:</strong> Corpo + Resistência (DV 8) a cada 2 horas de sono sem abrigo. Falha: +1 Cansaço, Deslocamento −1m.</p></li>
+<li><p><strong>Consumo de água dobrado:</strong> cada personagem precisa do dobro de água por dia, ou as penalidades de sede começam já no primeiro dia.</p></li>
+</ul>
+<h4 class="biome-sub">Perigos clássicos</h4>
+<div class="danger-block">
+<p class="danger-name">Miragem e desorientação</p>
+<p>O horizonte mente. Orientação exige Instinto + Sobrevivência (DV 8); sob calor extremo com Cansaço acumulado, o Mestre pode exigir DV 6. Afogamento: o grupo segue uma miragem até um poço seco.</p>
+</div>
+<div class="danger-block">
+<p class="danger-name">Tempestade de areia</p>
+<p>Conta como <strong>Tempestade</strong> + <strong>Nevoeiro</strong>: acampar exige DV 10 e Percepção/Pontaria sofrem +2. Quem marcha dentro dela faz Corpo + Resistência (DV 10) por hora ou +1 Cansaço e risco de separação do grupo.</p>
+</div>
+<div class="danger-block">
+<p class="danger-name">Solo traiçoeiro</p>
+<p>Areia movediça e crostas de sal ocultas: Intelecto + Percepção (DV 10) para notar; Agilidade + Reflexos (DV 10) para escapar; falha: preso até a cintura, extração exige ajuda e tempo.</p>
+</div>
+<h4 class="biome-sub">O que o deserto oferece</h4>
+<ul>
+<li><p><strong>Oásis:</strong> marco de recuperação raro — conta como abrigo básico e fonte de água, mas <strong>sempre</strong> é disputado por algo ou alguém.</p></li>
+<li><p><strong>Cactos e raízes:</strong> Sobrevivência (DV 10) extrai 1d4 porções de água por dia; Afogamento: a planta era tóxica (teste de Resistência ou Envenenado I).</p></li>
+<li><p><strong>Navegação noturna:</strong> o céu limpo do deserto dá −2 no Resultado (melhoria) em testes de orientação feitos à noite — por isso caravanas marcham de madrugada.</p></li>
+</ul>
+<div class="callout callout--cheat">
+<h2>Cola — Deserto</h2>
+<p><strong>Relógio duplo:</strong> calor DV 10 a cada 4h de dia; frio DV 8 a cada 2h de noite sem abrigo.</p>
+<p><strong>Água em dobro:</strong> conte cantis; o dia sem água já cobra +2 Cansaço.</p>
+<p><strong>Melhor tática:</strong> marchar de madrugada/noite (orientação com −2) e descansar ao meio-dia sob sombra.</p>
+</div>
+</section>
+
+<section class="biome" data-biome="vulcao" id="biome-vulcao">
+<div class="biome-head">
+<p class="biome-eyebrow">Domínio III</p>
+<h3>AS TERRAS DE CINZA</h3>
+<p class="biome-tagline">O chão respira fumaça, o rio é de fogo, e a pedra nunca esfria de verdade.</p>
+<div class="biome-motif" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 88 L40 40 L46 48 L54 36 L60 44 L80 88 Z"></path><path d="M44 30 C44 22 50 24 50 16 M56 28 C56 20 62 22 62 12" opacity="0.7"></path><path d="M46 88 L50 66 L54 88" stroke-width="1.4"></path></svg></div>
+</div>
+<p>Regiões vulcânicas são o teste supremo de resistência: calor constante, ar venenoso, terreno que muda. Aqui, <strong>o ambiente é o encontro</strong>.</p>
+<h4 class="biome-sub">Condições ativas</h4>
+<ul>
+<li><p><strong>Calor Extremo permanente:</strong> Corpo + Resistência (DV 10) a cada 4 horas; perto de rios de lava ou fumarolas, a cada 2 horas.</p></li>
+<li><p><strong>Ar tóxico:</strong> zonas de enxofre exigem Corpo + Resistência (DV 10) por hora de exposição. Falha: +1 Cansaço; Afogamento: Envenenado I.</p></li>
+<li><p><strong>Terreno instável:</strong> crostas de lava fria quebram — Agilidade + Reflexos (DV 10) ao atravessar campos de lava recentes; falha: 2d6 de dano de fogo e Queimando I.</p></li>
+</ul>
+<h4 class="biome-sub">Perigos clássicos</h4>
+<div class="danger-block">
+<p class="danger-name">Chuva de cinzas</p>
+<p>Conta como Nevoeiro (+2 em Percepção e Pontaria) e cobre rastros em minutos — testes de Rastrear tornam-se inúteis até a chuva passar.</p>
+</div>
+<div class="danger-block">
+<p class="danger-name">Erupção repentina</p>
+<p>Evento de cena, não de teste passivo: o Mestre anuncia sinais (tremor, estrondo, coluna de fumaça) e o grupo tem poucos turnos para reagir. Fugir é a resposta certa — enfrentar lava não é combate, é velório.</p>
+</div>
+<div class="danger-block">
+<p class="danger-name">Pontes de obsidiana</p>
+<p>Passagens naturais sobre rios de lava: Intelecto + Percepção (DV 10) avalia a estabilidade; atravessar em silêncio exige Agilidade + Furtividade para não trinca-la sob o grupo.</p>
+</div>
+<h4 class="biome-sub">O que as cinzas oferecem</h4>
+<ul>
+<li><p><strong>Materiais raros:</strong> obsidiana, sal negro e corações de brasa são componentes alquímicos valiosos — coleta com Intelecto + Natureza (DV 8), sempre perto do perigo.</p></li>
+<li><p><strong>Território da Corte Rubra:</strong> os Demônios de Fireless prosperam aqui; encontrar patrulhas, postos e mercados da Corte é questão de quando, não de se.</p></li>
+<li><p><strong>Calor útil:</strong> forjas naturais e fontes termais permitem reparos e tratamentos que exigiriam infraestrutura em outro lugar.</p></li>
+</ul>
+<div class="callout callout--cheat">
+<h2>Cola — Vulcão</h2>
+<p><strong>Testes do dia:</strong> Resistência DV 10 (calor, a cada 4h ou 2h), Resistência DV 10 (ar tóxico, por hora), Reflexos DV 10 (crosta).</p>
+<p><strong>Sinais antes do desastre:</strong> sempre dê 2 ou 3 avisos antes da erupção — tremor, silêncio dos animais, cheiro de enxofre.</p>
+<p><strong>Aliados naturais:</strong> Anões Sangue-de-Ferro e Demônios ignoram parte do calor; use-os como guias e contraste.</p>
+</div>
+</section>
+
+<section class="biome" data-biome="gelo" id="biome-gelo">
+<div class="biome-head">
+<p class="biome-eyebrow">Domínio IV</p>
+<h3>A FRONTEIRA BRANCA</h3>
+<p class="biome-tagline">O frio não ataca. Ele espera você parar.</p>
+<div class="biome-motif" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"><line x1="50" y1="12" x2="50" y2="88"></line><line x1="17" y1="31" x2="83" y2="69"></line><line x1="17" y1="69" x2="83" y2="31"></line><path d="M50 12 L42 24 M50 12 L58 24 M50 88 L42 76 M50 88 L58 76" stroke-width="1.4"></path><path d="M17 31 L31 34 M17 31 L27 21 M83 69 L69 66 M83 69 L73 79" stroke-width="1.4"></path><path d="M83 31 L69 34 M83 31 L73 21 M17 69 L31 66 M17 69 L27 79" stroke-width="1.4"></path></svg></div>
+</div>
+<p>O gelo é o domínio da disciplina: fogueira, camadas, ritmo. Quem se apressa sua — e quem sua, congela.</p>
+<h4 class="biome-sub">Condições ativas</h4>
+<ul>
+<li><p><strong>Frio Extremo:</strong> Corpo + Resistência (DV 8) a cada 2 horas. Falha: +1 Cansaço e Deslocamento −1m.</p></li>
+<li><p><strong>Terreno difícil:</strong> neve profunda corta a distância base pela metade; gelo liso exige Agilidade + Reflexos (DV 10) para correr — falha: Caído.</p></li>
+<li><p><strong>Sem fogo, sem descanso:</strong> Descanso Longo exige fogueira ou abrigo térmico; sem eles, conta como precário automaticamente.</p></li>
+</ul>
+<h4 class="biome-sub">Perigos clássicos</h4>
+<div class="danger-block">
+<p class="danger-name">Nevasca</p>
+<p>Combina Tempestade e Escuridão: acampar exige DV 10, Percepção sofre +4 e orientação cai para DV 6 — o mundo vira branco em todas as direções.</p>
+</div>
+<div class="danger-block">
+<p class="danger-name">Gelo fino</p>
+<p>Lagos e rios congelados: Intelecto + Percepção (DV 10) avalia a espessura; quebra exige Agilidade + Reflexos (DV 8) para não cair. Água gelada: Corpo + Resistência (DV 6) por rodada imerso ou +2 Cansaço e Lento I.</p>
+</div>
+<div class="danger-block">
+<p class="danger-name">Fome de inverno</p>
+<p>A caça é escassa e fugidia: coleta com Sobrevivência em DV 8, e falhas significam dia sem comida — o relógio da fome começa a contar.</p>
+</div>
+<h4 class="biome-sub">O que o gelo oferece</h4>
+<ul>
+<li><p><strong>Rastros perfeitos:</strong> neve fresca grava tudo — Rastrear com −2 no Resultado (melhoria), inclusive para o que está caçando vocês.</p></li>
+<li><p><strong>Silêncio tático:</strong> a neve absorve som; emboscadas e aproximações furtivas ganham espaço narrativo.</p></li>
+<li><p><strong>Abrigo de neve:</strong> quem sabe construir (Sobrevivência DV 10) transforma a própria neve em abrigo térmico válido para Descanso Longo.</p></li>
+</ul>
+<div class="callout callout--cheat">
+<h2>Cola — Gelo</h2>
+<p><strong>Relógio implacável:</strong> Resistência DV 8 a cada 2h, sem exceção — o frio é o mestre de jogo mais pontual de Nexia.</p>
+<p><strong>Fogueira é recurso:</strong> conte lenha; sem fogo, o Descanso Longo vira precário (metade de tudo).</p>
+<p><strong>Ferramenta narrativa:</strong> pegadas na neve contam a história do dia — use para semear encontros antes deles acontecerem.</p>
+</div>
+</section>
+</section>
+</div></section>
+
+
+<!-- CAP I continua: ferramentas do explorador -->
+<section class="level1 chapter" data-color="green" id="ferramentas-capitulo" style="display:contents">
+<div class="reader">
+<section class="level2" id="ferramentas-do-explorador">
+<h2>FERRAMENTAS DO EXPLORADOR</h2>
+<p>Luz, armadilhas e orientação — as três coisas que separam um grupo preparado de um grupo perdido.</p>
+
+<h3>ILUMINAÇÃO</h3>
+<p>A luz não é apenas atmosfera. Sem ela, a mecânica muda.</p>
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Condição de Luz</th><th>Efeito</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>Boa</strong></td><td>Sem penalidade.</td></tr>
+<tr class="even"><td><strong>Penumbra</strong></td><td>+2 no Resultado de Percepção e ataques à distância. Deslocamento −25% se não conhece o ambiente.</td></tr>
+<tr class="odd"><td><strong>Escuridão</strong></td><td>+4 no Resultado de Percepção e ataques à distância. Deslocamento −50%. Agilidade + Reflexos (DV 10) para correr — falha: Caído.</td></tr>
+<tr class="even"><td><strong>Escuridão Mágica</strong></td><td>Penalidades acima + Espírito + Resistência Psíquica (DV 8) ou +1 Cansaço por rodada de exposição.</td></tr>
+</tbody>
+</table></div>
+<p><strong>Fontes de luz:</strong> Tochas (6m de raio, 1 hora), Lanternas (8m, 4 horas com óleo), habilidades de Mana.</p>
+
+<h3>ARMADILHAS E OBSTÁCULOS</h3>
+<p class="split-label"><strong><span class="tag-cap">Detectar</span> <span class="tag-val">Intelecto + Percepção (ou Intelecto + Tecnologia para mecanismos)</span></strong></p>
+<p class="split-label"><strong><span class="tag-cap">Desarmar</span> <span class="tag-val">Agilidade + Reflexos (simples) ou Intelecto + Tecnologia (complexos)</span></strong></p>
+<p class="split-label"><strong><span class="tag-cap">Evitar</span> <span class="tag-val">Agilidade + Reflexos (reação)</span></strong></p>
+<p class="label-example"><strong>EXEMPLO — PLACA DE PRESSÃO</strong></p>
+<p>Detectar: DV 10 (Intelecto + Percepção). Desarmar: DV 8 (Intelecto + Tecnologia). Evitar: DV 14 (Agilidade + Reflexos, ao pisar).</p>
+
+<h3>MAPEAMENTO E ORIENTAÇÃO</h3>
+<p>Sem mapa ou guia, o grupo pode se perder.</p>
+<p class="split-label"><strong><span class="tag-cap">Teste</span> <span class="tag-val">Instinto + Sobrevivência (ou Navegação)</span></strong></p>
+<ul>
+<li><p><strong>DV 14:</strong> território conhecido.</p></li>
+<li><p><strong>DV 8:</strong> território selvagem.</p></li>
+<li><p><strong>DV 2:</strong> regiões que distorcem a realidade.</p></li>
+</ul>
+<p><strong>Falha:</strong> o grupo vagueia — perde 1d4 horas ou entra em terreno perigoso. <strong>Afogamento:</strong> o grupo termina exatamente onde não deveria estar.</p>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">Personagem com visão noturna ignora Penumbra e Escuridão?</p>
+<p class="qa-a">Penumbra, sim, se a Vertente diz isso. Escuridão total não tem luz para amplificar — a maioria das visões noturnas vira apenas Penumbra. <strong>Escuridão Mágica</strong> nunca é ignorada por visão noturna; só fontes sobrenaturais específicas a atravessam.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Quem não está carregando a tocha sofre as penalidades?</p>
+<p class="qa-a">Quem está <strong>dentro do raio de luz</strong> age normalmente; quem sai dele sofre a condição de onde está. A tocha ilumina 6m — o grupo marcha em bloco ou aceita a escuridão.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Posso desarmar uma armadilha que não detectei?</p>
+<p class="qa-a">Não — você não desarma o que não sabe que existe. A sequência é sempre <strong>Detectar → Desarmar → (se falhar tudo) Evitar</strong> no momento do disparo.</p>
+</div>
+<div class="qa">
+<p class="qa-q">O grupo inteiro rola orientação?</p>
+<p class="qa-a">Rola o <strong>guia</strong> — quem lidera a marcha. Um segundo personagem pode auxiliar se tiver mapa, bússola ou conhecimento local, a critério do Mestre.</p>
+</div>
+</div>
+</section>
+
+<section class="level2" id="cola-exploracao">
+<div class="callout callout--cheat">
+<h2>Cola Ultrarrápida — Todo Dia de Exploração</h2>
+<h3>1. Saída</h3>
+<p>Confiram: água, comida, kit médico, fonte de luz. Escolham o <strong>ritmo</strong> (Normal / Rápida +2 Cansaço / Forçada +4 / Cautelosa −50% distância).</p>
+<h3>2. Durante a marcha</h3>
+<p>Aplique o clima ativo (calor DV 10 / frio DV 8). Se o terreno for difícil, distância pela metade. Um teste de orientação por trecho sem mapa.</p>
+<h3>3. Encontro ou perigo</h3>
+<p>Percepção do grupo (modificada pelo ritmo) contra a abordagem da ameaça. Falhou? O grupo começa Surpreendido.</p>
+<h3>4. Fim do dia</h3>
+<p>Acampamento: Instinto + Sobrevivência (DV do terreno). Sucesso = Descanso Longo; falha = conta como Breve; Afogamento = problema à espreita.</p>
+<h3>5. Contabilidade</h3>
+<p>Some o Cansaço do dia (ritmo + clima + privações). Marque usos de kit, água e rações. Amanhã cobra.</p>
+</div>
+<div class="callout callout--warning">
+<h2>Não transforme viagem em contabilidade morta</h2>
+<p>A pergunta não é "quantas rações vocês têm?" a cada cinco minutos. É: <strong>"o que vocês fizeram para se preparar?"</strong> Se o grupo comprou suprimentos e contratou um guia, a viagem flui com 2 ou 3 testes. Se ignorou a preparação, aí sim o deserto cobra — Cansaço, sede, desorientação. A punição deve ser proporcional à negligência, nunca um imposto aleatório.</p>
+</div>
+</section>
+</div>
+</section>
+
+<!-- ============================================================
+     CAPÍTULO II — REGRAS SOCIAIS E FACÇÕES
+     ============================================================ -->
+<section class="level1 chapter" data-color="blue" id="regras-sociais-faccoes"><header class="chapter-head"><div aria-hidden="true" class="chapter-motif"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="50" fill="none" opacity="0.32" r="46" stroke="currentColor" stroke-width="1"></circle>
+<path d="M28 82 L28 40 L50 24 L72 40 L72 82" fill="none" opacity="0.85" stroke="currentColor" stroke-width="1.2"></path>
+<line x1="20" y1="82" x2="80" y2="82" opacity="0.85" stroke="currentColor" stroke-width="1.2"></line>
+<path d="M40 82 L40 58 L60 58 L60 82" fill="none" opacity="0.6" stroke="currentColor" stroke-width="1"></path>
+<circle cx="50" cy="42" fill="currentColor" r="4"></circle>
+</svg></div><p class="chapter-eyebrow">Capítulo II</p><h1>REGRAS SOCIAIS E FACÇÕES</h1><p class="chapter-tagline">Palavras, posturas e o jogo silencioso do poder — jogado entre muros, mesas e multidões.</p></header><div class="reader">
+
+<section class="level2" id="filosofia-da-palavra">
+<h2>A FILOSOFIA DA PALAVRA</h2>
+<p>Em Nexia, a espada resolve um problema. <strong>A palavra resolve dez.</strong></p>
+<p>O sistema social não é uma pausa no jogo "real". É uma extensão dele. Quando dois seres se enfrentam numa taverna, num salão do trono ou numa cela escura, há dano sendo trocado. Apenas a ferida não sangra imediatamente.</p>
+<p>Toda interação social que importa segue a mesma pergunta do combate:</p>
+<p class="label-strong"><strong>EXISTE RISCO? EXISTE CONSEQUÊNCIA REAL? EXISTE MAIS DE UMA MANEIRA INTERESSANTE DE RESOLVER?</strong></p>
+<p>Se sim, você mergulha. Se não, você simplesmente fala.</p>
+<blockquote>Pedir um Mergulho social para comprar pão é desperdiçar o sistema. Guardar o Mergulho para quando a resposta do PNJ muda o destino da cena é usá-lo como ele foi feito.</blockquote>
+</section>
+
+<section class="level2" id="posturas-sociais">
+<h2>POSTURAS SOCIAIS</h2>
+<p>Assim como no combate físico, interações sociais exigem <strong>Postura</strong>. A Postura não é o que você diz — é <strong>como você se posiciona</strong> enquanto diz.</p>
+<p>No início de um confronto social, cada participante declara sua Postura — secreta ou aberta, conforme o Mestre determinar. A Postura permanece até que um dos lados mude de abordagem, o que exige uma nova ação social (não uma troca gratuita).</p>
+
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Postura</th><th>Perícia</th><th>O que faz</th><th>Se vencer</th><th>Se falhar</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>Aberta</strong></td><td>Diplomacia</td><td>Busca acordo, confissão ou aliança. Revela algo de si para criar ponte.</td><td>Ambos ganham algo. Acordo vinculativo.</td><td>Oponente fica <strong>Irritado</strong> (+2 no resultado contra você). Você expôs uma fraqueza real.</td></tr>
+<tr class="even"><td><strong>Pressão</strong></td><td>Intimidação</td><td>Força submissão por ameaça, comando ou chantagem.</td><td>Oponente cede ou fica <strong>Amedrontado</strong> (+2 quando confrontar você).</td><td>Oponente fica <strong>Desafiado</strong> (−2 na próxima ação contra você). Falha mal contra fanáticos e superiores que não podem perder a face.</td></tr>
+<tr class="odd"><td><strong>Velada</strong></td><td>Enganação</td><td>Oculta intenções. Mente, blefa, manipula.</td><td>Oponente age conforme sua narrativa por 1 cena.</td><td>Oponente descobre a mentira e fica <strong>Hostil</strong>. Reputação com essa pessoa cai permanentemente. Sem segunda chance com a mesma mentira.</td></tr>
+<tr class="even"><td><strong>Analítica</strong></td><td>Intuição</td><td>Observa antes de se comprometer. Não resolve — prepara.</td><td>−2 no resultado (melhoria) na próxima Postura contra o mesmo alvo neste confronto.</td><td>Oponente percebe a análise (Intuição vs Intuição). Se você falhar, ele fica <strong>Cauteloso</strong> (+2 contra você).</td></tr>
+</tbody>
+</table></div>
+
+<h3>APROFUNDANDO CADA POSTURA</h3>
+<p class="label-strong"><strong>ABERTA — A PONTE</strong></p>
+<p>A única postura em que <strong>os dois lados podem ganhar</strong>. Use quando o objetivo é duradouro: alianças, acordos, confiança. O preço é a exposição — você dá algo verdadeiro de si. Falhar não só irrita o outro: entrega munição.</p>
+<p class="label-strong"><strong>PRESSÃO — O PUNHO</strong></p>
+<p>Rápida e barata, mas o que se conquista por medo se perde por rancor. Pressão vencida compra obediência, não lealdade — e contra quem não pode perder a face diante dos seus (líderes em público, fanáticos), a falha é quase garantida e a escalada é violenta.</p>
+<p class="label-strong"><strong>VELADA — A MÁSCARA</strong></p>
+<p>A mais poderosa em efeito (o alvo <em>age conforme sua narrativa</em>) e a mais punitiva na falha: Hostil permanente e reputação arranhada para sempre com aquela pessoa. Mentira boa é a que você só precisa contar uma vez.</p>
+<p class="label-strong"><strong>ANALÍTICA — O OLHO</strong></p>
+<p>Não resolve nada sozinha: <strong>prepara o próximo golpe</strong> com −2 de melhoria. É a postura de quem entra na sala para aprender onde estão as saídas, quem teme quem, e o que o anfitrião não disse.</p>
+<p class="label-soft"><strong>Sedução não é Postura:</strong> é uma expressão de Aberta (desejo de conexão) ou Velada (desejo de controle), com os mesmos efeitos mecânicos — e pode estabelecer ou destruir um Vínculo Íntimo.</p>
+
+<h3>ATRIBUTO E ABORDAGEM</h3>
+<p>A tabela indica o padrão, mas a <strong>Abordagem Alternativa</strong> se aplica plenamente:</p>
+<ul>
+<li><p><strong>Diplomacia:</strong> Presença (padrão), Intelecto (negociação lógica), Espírito (apelo à honra/crença).</p></li>
+<li><p><strong>Intimidação:</strong> Presença (padrão), Corpo (ameaça física explícita), Intelecto (chantagem psicológica).</p></li>
+<li><p><strong>Enganação:</strong> Presença (padrão), Instinto (leitura rápida do alvo), Intelecto (mentira elaborada).</p></li>
+<li><p><strong>Intuição:</strong> Instinto (padrão), Intelecto (análise fria de padrões).</p></li>
+</ul>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">Posso trocar de Postura no meio do confronto?</p>
+<p class="qa-a">Sim, mas trocar é <strong>uma nova ação social</strong> — gasta tempo de cena e dá ao oponente uma nova leitura de você. Trocar toda hora sinaliza desespero, e o Mestre pode narrar isso.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Postura secreta ou aberta: quem decide?</p>
+<p class="qa-a">O Mestre. Em intriga e salões, geralmente <strong>secreta</strong> — cada lado escreve a Postura e revela na hora do Mergulho. Em negociações diretas, aberta. A diferença muda toda a tensão da cena.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Pressão em grupo funciona? (cinco heróis encarando um taverneiro)</p>
+<p class="qa-a">Mecanicamente, quem fala lidera o teste. Narrativamente, cercar o alvo é exatamente o que torna a Pressão crível — mas também é o que faz a falha escalar para violência. Números intimidam; também encurralam.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Analítica pode ser usada sozinha, sem combinar com outra Postura?</p>
+<p class="qa-a">Pode, mas lembre: ela <strong>não resolve</strong> o confronto, só prepara. Usar Analítica e encerrar a cena significa sair da conversa com informação e sem concessão — o que, muitas vezes, é a vitória real.</p>
+</div>
+</div>
+</section>
+
+<section class="level2" id="o-confronto-social">
+<h2>O CONFRONTO SOCIAL</h2>
+<ol>
+<li><p><strong>Declarar Posturas.</strong> Cada lado escolhe e declara (ou esconde) sua Postura. O Mestre define se é aberta ou secreta. Em cenas de intriga, geralmente secreta.</p></li>
+<li><p><strong>Descrever a Abordagem.</strong> O jogador descreve o que diz, como diz e o que quer. O Mestre confirma se a descrição justifica o Atributo proposto.</p></li>
+<li><p><strong>O Mergulho.</strong> Ambos rolam. Fórmula: <strong>Resultado = (dois menores d20) − Perícia</strong>. O tamanho do pool é <strong>Atributo + 1</strong>.</p></li>
+<li><p><strong>Comparar Resultados.</strong> Quanto menor, melhor. Se Resultado A ≤ Resultado B, A vence. Diferença = Resultado do perdedor − do vencedor.</p></li>
+<li><p><strong>Aplicar Consequência.</strong> Conforme a diferença e a Postura.</p></li>
+</ol>
+
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Diferença</th><th>Grau</th><th>Efeito</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>0–2</strong></td><td>Empate Tático</td><td>Ninguém cede. Acordo parcial ou o confronto continua em outra Postura. Nenhum estado aplicado.</td></tr>
+<tr class="even"><td><strong>3–5</strong></td><td>Vitória</td><td>Vencedor obtém o objetivo. Perdedor não perde nada além de posição — sabe que foi superado, não está quebrado.</td></tr>
+<tr class="odd"><td><strong>6–10</strong></td><td>Vitória Esmagadora</td><td>Objetivo + informação extra, concessão narrativa ou abertura para segunda demanda menor.</td></tr>
+<tr class="even"><td><strong>11+</strong></td><td>Dominação</td><td>Vencedor redefine a relação. Perdedor ganha Estado Social persistente (Irritado, Amedrontado, Hostil ou Submisso) por <strong>1 sessão inteira</strong>, ou até evento narrativo o remover.</td></tr>
+</tbody>
+</table></div>
+
+<p class="label-example"><strong>EXEMPLO COMPLETO</strong></p>
+<p>Vael (Presença 4, Diplomacia 4) tenta convencer um capitão a liberar prisioneiros, em Postura <strong>Aberta</strong>. O capitão (Presença 3, Intimidação 4) responde com <strong>Pressão</strong> — ameaças de prisão.</p>
+<p><strong>Vael:</strong> 5d20 → 8, 12, 3, 15, 7. Dois menores: 3 e 7 = 10. 10 − 4 = <strong>4</strong>.</p>
+<p><strong>Capitão:</strong> 4d20 → 10, 7, 14, 9. Dois menores: 7 e 9 = 16. 16 − 4 = <strong>12</strong>.</p>
+<p><strong>Diferença: 8 — Vitória Esmagadora de Vael.</strong> O capitão cede, mas exige que os prisioneiros sejam exilados, não libertos. E Vael ainda ganha a informação extra: o capitão teme que os prisioneiros sejam executados em segredo por ordem de alguém acima dele. Há uma facção maior em jogo.</p>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">E se os dois lados usarem a mesma Postura?</p>
+<p class="qa-a">Normal — dois negociadores Abertos são uma negociação honesta; duas Veladas são uma sala inteira de mentiras esperando a primeira rachadura. O sistema não proíbe; a diferença de resultados decide.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Quanto tempo dura um confronto social?</p>
+<p class="qa-a">O que a cena pedir. Uma negociação simples pode ser <strong>um Mergulho</strong>. Um julgamento ou uma corte pode ser uma sequência de 3–5 Mergulhos com trocas de Postura — trate como um combate de múltiplas rodadas.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Empate Tático encerra a cena?</p>
+<p class="qa-a">Não necessariamente. Ele entrega um <strong>acordo parcial</strong> ou permite continuar em outra Postura. É o "round empatado" do duelo verbal.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Posso usar Mergulho social contra outro jogador?</p>
+<p class="qa-a">O sistema não foi feito para isso. Entre personagens jogadores, a palavra final é dos <strong>jogadores</strong> — o dado decide como o mundo reage, não o que um colega pensa.</p>
+</div>
+</div>
+</section>
+
+<section class="level2" id="estados-sociais">
+<h2>ESTADOS SOCIAIS</h2>
+<p>Estados sociais funcionam como Condições, mas aplicam-se à <strong>identidade e à relação</strong> entre personagens.</p>
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Estado</th><th>Efeito</th><th>Duração</th><th>Remoção</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>Irritado</strong></td><td>+2 no resultado de testes sociais contra quem irritou.</td><td>1 cena</td><td>Controle Emocional (DV 10) ou o causador mudar para Aberta.</td></tr>
+<tr class="even"><td><strong>Amedrontado</strong></td><td>+2 no resultado ao confrontar a fonte do medo. Pode ceder automaticamente em vez de rolar.</td><td>1 sessão</td><td>Corpo + Resistência (DV 8) ou evento que prove que a ameaça era vazia.</td></tr>
+<tr class="odd"><td><strong>Hostil</strong></td><td>Recusa interação social não-forçada. Testes sociais contra essa pessoa: +4.</td><td>Permanente (com essa pessoa)</td><td>Apenas mudança narrativa drástica (salvar a vida, provar inocência).</td></tr>
+<tr class="even"><td><strong>Desafiado</strong></td><td>−2 no resultado (melhoria) na próxima ação contra quem o desafiou.</td><td>Próxima ação contra a fonte</td><td>Após usar.</td></tr>
+<tr class="odd"><td><strong>Cauteloso</strong></td><td>+2 no resultado contra quem tentou analisá-lo.</td><td>1 cena</td><td>O analista troca para Aberta e obtém sucesso.</td></tr>
+<tr class="even"><td><strong>Cético</strong></td><td>+4 no resultado contra futuras Enganações ou Seduções da mesma fonte.</td><td>Permanente (com essa pessoa)</td><td>Apenas prova concreta de honestidade.</td></tr>
+<tr class="odd"><td><strong>Submisso</strong></td><td>Cede a qualquer demanda social não letal e não autodestrutiva que não viole sua Limitação Central.</td><td>1 sessão</td><td>Espírito + Controle Emocional (DV 6) no início de cada nova cena com a fonte.</td></tr>
+</tbody>
+</table></div>
+<p class="label-strong"><strong>NOTA SOBRE O TETO</strong></p>
+<p>Modificadores de reputação e estados sociais se acumulam, mas <strong>nunca ultrapassam ±5 no resultado de uma mesma rolagem</strong>.</p>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">Hostil e Cético são para sempre mesmo?</p>
+<p class="qa-a">Com <strong>aquela pessoa</strong>, sim — até uma mudança narrativa drástica. É o preço de mentir para a pessoa errada. Com a facção dela, o estrago é menor: reputação cai, mas pode ser reconstruída.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Submisso faz o PNJ obedecer a tudo?</p>
+<p class="qa-a">Quase: cede a demandas <strong>não letais, não autodestrutivas</strong> e que não violem a Limitação Central dele. Pedir a um guarda Submisso que abra o portão? Funciona. Que se jogue da muralha? Jamais.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Irritado +2 e Hostil +4 acumulam?</p>
+<p class="qa-a">Se as fontes forem diferentes, sim — até o teto de ±5. Se forem da mesma pessoa, o estado mais forte prevalece.</p>
+</div>
+</div>
+</section>
+
+<section class="level2" id="reputacao-e-faccoes">
+<h2>REPUTAÇÃO E FACÇÕES</h2>
+<p>Nexia não é um vazio entre aventureiros e monstros. É um tecido de interesses. Cada personagem carrega uma <strong>Reputação</strong> com as facções que movem o mundo: um valor de −10 a +10 que diz não quem você é, mas <strong>quem os outros acham que você é</strong>.</p>
+
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Reputação</th><th>Efeito Mecânico</th><th>Efeito Narrativo</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>−10 a −7 · Hostil</strong></td><td>Testes sociais com membros: +4. Preços: ×3. Não entra em território sem disfarce ou força.</td><td>Procurado. Recompensa pela cabeça. Ataque à vista ou denúncia.</td></tr>
+<tr class="even"><td><strong>−6 a −3 · Desconfiado</strong></td><td>Testes sociais: +2. Preços: ×1,5.</td><td>Mal-visto. Vigilância constante. Rumores chegam antes de você.</td></tr>
+<tr class="odd"><td><strong>−2 a +2 · Neutro</strong></td><td>Sem bônus ou penalidades. Preços normais.</td><td>Desconhecido ou irrelevante. Mais um rosto.</td></tr>
+<tr class="even"><td><strong>+3 a +6 · Respeitado</strong></td><td>Testes sociais: −1 (melhoria). Preços: ×0,8. Acesso a informações restritas.</td><td>Conhecido favoravelmente. Convites. Alguém o defende nas discussões internas.</td></tr>
+<tr class="odd"><td><strong>+7 a +10 · Honrado</strong></td><td>Testes sociais: −2 (melhoria). Preços: ×0,5. Recursos raros e missões exclusivas.</td><td>Herói local. Favores que custam fortunas. Sua presença altera a política interna.</td></tr>
+</tbody>
+</table></div>
+<p class="label-soft"><strong>Os descontos valem apenas para compras diretas com a facção. Revenda é sempre 50% do preço-base, independentemente da Reputação.</strong></p>
+
+<h3>MUDANDO REPUTAÇÃO</h3>
+<p>Reputação não é experiência. É <strong>consequência de escolhas visíveis</strong>.</p>
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Ação</th><th>Mudança</th></tr></thead>
+<tbody>
+<tr class="odd"><td>Completar missão importante para a facção</td><td><strong>+1</strong></td></tr>
+<tr class="even"><td>Defender um membro em público</td><td><strong>+1</strong></td></tr>
+<tr class="odd"><td>Doar recurso valioso (50+ PP)</td><td><strong>+1</strong></td></tr>
+<tr class="even"><td>Salvar líder ou herói da facção</td><td><strong>+2</strong></td></tr>
+<tr class="odd"><td>Revelar traição de facção inimiga</td><td><strong>+2</strong></td></tr>
+<tr class="even"><td>Falhar missão publicamente</td><td><strong>−1</strong></td></tr>
+<tr class="odd"><td>Associar-se abertamente a inimigo da facção</td><td><strong>−1</strong></td></tr>
+<tr class="even"><td>Matar membro da facção</td><td><strong>−2</strong></td></tr>
+<tr class="odd"><td>Destruir propriedade valiosa</td><td><strong>−2</strong></td></tr>
+<tr class="even"><td>Trair aliança formal</td><td><strong>−5</strong></td></tr>
+<tr class="odd"><td>Matar líder da facção</td><td><strong>−5</strong></td></tr>
+<tr class="even"><td>Usar Lanto Maligno / Corrupção contra civis da facção</td><td><strong>−5</strong></td></tr>
+</tbody>
+</table></div>
+<p class="label-strong"><strong>LIMITE</strong></p>
+<p>Reputação nunca muda mais de <strong>±2 em uma única ação</strong> — exceto traições, assassinatos ou atrocidades, que podem saltar −5 de uma vez. Honraria máxima exige tempo e consistência, não um gesto heroico isolado.</p>
+
+<div class="callout callout--duvida">
+<div class="qa">
+<p class="qa-q">Reputação é do grupo ou individual?</p>
+<p class="qa-a">O valor-base é <strong>do grupo</strong> diante da facção, mas ações públicas e individuais podem pendular um membro específico — o rosto do grupo é quem fala, quem aparece, quem foi visto.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Como recuperar reputação Hostil?</p>
+<p class="qa-a">Devagar e em público: feitos que a facção não pode ignorar, intermediários respeitados, restituição do que foi destruído. E algumas portas simplesmente não reabrem — é o preço da consequência permanente.</p>
+</div>
+<div class="qa">
+<p class="qa-q">Subir com uma facção derruba com a inimiga?</p>
+<p class="qa-a">Frequentemente, sim — e sem teste. Salvar um herói dos Jardins do Horizonte é, aos olhos da Ordem do Vazio, um ato de guerra fria. O Mestre aplica o ajuste cruzado quando a notícia chegar. E a notícia sempre chega.</p>
+</div>
+</div>
+</section>
+
+<section class="level2" id="as-faccoes-de-nexia">
+<h2>AS FACÇÕES DE NEXIA</h2>
+<p>Quinze poderes disputam o mundo conhecido. Cada uma deve <strong>querer algo que o grupo possa dar</strong> e <strong>temer algo que o grupo possa representar</strong>.</p>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Casas Nobres</span><span class="faction-race">Humanos</span></div>
+<p class="faction-flavor">Aristocracia de sangue e papel. Controlam cidades, estradas e a fome de quem não nasceu entre muros. Cada Casa é uma máquina de alianças — o indivíduo é peça ou obstáculo.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Status, tradição, alianças lucrativas, herança</span></span><span><b>Odeia</b><span class="tag-hate">Democracia, magia descontrolada, usurpadores, sangue novo ambicioso</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Jardins do Horizonte</span><span class="faction-race">Multirracial · pred. Humana</span></div>
+<p class="faction-flavor">Devotos da vida pura. Curam o corpo e queimam a corrupção. O Abismo é uma ferida a cauterizar; a Mana só é aceitável quando serve à ordem natural.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Curandeirismo, sacrifício altruísta, purificação, ordem</span></span><span><b>Odeia</b><span class="tag-hate">Necromancia, Lanto Maligno, corrupção abissal, progresso sem alma</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Guilda dos Artífices</span><span class="faction-race">Multirracial · pred. Brach, Anão, Humano</span></div>
+<p class="faction-flavor">Engenheiros, alquimistas e loucos de lentes. Vendem o futuro em peças e cobram caro pelo manual. Não têm exércitos — têm engrenagens que funcionam melhor que exércitos.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Inovação, conhecimento, progresso, segredos bem guardados</span></span><span><b>Odeia</b><span class="tag-hate">Restrições religiosas, perda de segredos, quebra de patente</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Clãs Élficos</span><span class="faction-race">Elfos</span></div>
+<p class="faction-flavor">Nações espalhadas em gemas e florestas. Cada clã é um mundo; o exterior é apenas barulho. Não se envolvem nas guerras dos jovens — a menos que pise em terra sagrada.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Equilíbrio natural, linhagem pura, segredos ancestrais, tempo</span></span><span><b>Odeia</b><span class="tag-hate">Expansão humana, desmatamento, "ladrões de magia", pressa</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Reinos Anões</span><span class="faction-race">Anões</span></div>
+<p class="faction-flavor">Castas de pedra e fogo. Um contrato com um Anão é mais forte que a morte — e eles nunca esquecem quem quebra. Suas fortalezas não caem. Elas esperam.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Contratos de ferro, palavra dada, trabalho bem-feito, honra</span></span><span><b>Odeia</b><span class="tag-hate">Quebra de juramento, desonra, magia que substitui ofício</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Corte Rubra</span><span class="faction-race">Demônios</span></div>
+<p class="faction-flavor">Aristocracia de chifres e sangue. Governam Fireless com punhos de veludo e garras de aço. Fraqueza é a única doença que não perdoam. Poder sem espetáculo é poder desperdiçado.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Poder absoluto, pactos vinculativos, espetáculo de força, sangue</span></span><span><b>Odeia</b><span class="tag-hate">Fraqueza, traição de sangue, interferência celestial, quem recusa um desafio</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Ordem do Vazio</span><span class="faction-race">Multirracial</span></div>
+<p class="faction-flavor">Culto que venera o Abismo como verdade. Para eles, a realidade é uma casca doente — e eles querem ajudar a quebrar. Não são loucos. São convertidos.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Corrupção, transformação, destruição de falsas moralidades</span></span><span><b>Odeia</b><span class="tag-hate">Jardins do Horizonte, pureza, status quo</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Mercadores Livres</span><span class="faction-race">Multirracial</span></div>
+<p class="faction-flavor">Nenhum rei, nenhum deus, apenas o preço justo. Operam nas frestas entre impérios e nunca perguntam de onde veio. A lealdade dura até a próxima oferta.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Ouro, informação, neutralidade, oportunismo</span></span><span><b>Odeia</b><span class="tag-hate">Monopólios, impostos, lealdade cega, quem mata o mensageiro</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">A Câmara de Âmbar</span><span class="faction-race">Ghar</span></div>
+<p class="faction-flavor">Coletivos que controlam o comércio de resina, cura e veneno. Não têm exércitos — têm corpos que resistem onde outros morrem. Sobreviver é a única prova de valor.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Resina, resistência, sobrevivência, comércio justo, longevidade</span></span><span><b>Odeia</b><span class="tag-hate">Frio extremo, desperdício, escravidão</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Os Reinos Flutuantes</span><span class="faction-race">Marrow</span></div>
+<p class="faction-flavor">Cidades que não tocam terra firme. Reis de água e sal que seguem correntes e monstros. Lealdade é medida em profundidade. Um Marrow que não nada não governa.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Mobilidade, tempestade, profundidade, liberdade das correntes</span></span><span><b>Odeia</b><span class="tag-hate">Sedentarismo, seca, prisões subterrâneas, poluição da água</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Os Despertos</span><span class="faction-race">Vazias</span></div>
+<p class="faction-flavor">Vazias que abandonaram seus criadores e construíram identidade própria. Procuram resposta para a pergunta que ninguém fez: por que existimos? Não têm sangue. Têm propósito.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Identidade, autonomia, descoberta</span></span><span><b>Odeia</b><span class="tag-hate">Escravidão de constructos, ser tratada como objeto, esquecimento</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">Os Afloramentos Unidos</span><span class="faction-race">Lith</span></div>
+<p class="faction-flavor">Trundas que falam em nome da Pedra-Mãe. Não negociam — calculam. Tempo é mineral e paciência é a forma mais pura de poder.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Permanência, crescimento mineral, contratos de longo prazo</span></span><span><b>Odeia</b><span class="tag-hate">Demolição, pressa, mentiras</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">O Círculo de Presas</span><span class="faction-race">Kith</span></div>
+<p class="faction-flavor">Matilhas que reivindicam territórios selvagens. Não reconhecem fronteiras humanas — reconhecem cheiro, força e submissão.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Território, instinto, caça, lealdade à matilha</span></span><span><b>Odeia</b><span class="tag-hate">Cercas, domesticadores, cidades sem respeito, traição de cheiro</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">A Teia</span><span class="faction-race">Brach</span></div>
+<p class="faction-flavor">Irmandade que escala onde outros não ousam. Controlam pontes, penhascos e as alturas das cidades. O chão é para prisioneiros.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Altura, construção, cordas, pontes, visão panorâmica</span></span><span><b>Odeia</b><span class="tag-hate">Terreno plano, quem destrói pontes, confinamento</span></span></div></div>
+
+<div class="faction-card"><div class="faction-head"><span class="faction-name">A Lâmina Cinzenta</span><span class="faction-race">Multirracial</span></div>
+<p class="faction-flavor">Mercenários que não perguntam por quem, apenas quanto. Não têm pátria — têm contratos. A Lâmina Cinzenta não perde guerras; perde clientes que não pagam.</p>
+<div class="faction-tags"><span><b>Valoriza</b><span class="tag-love">Ouro, disciplina, cumprimento de contrato</span></span><span><b>Odeia</b><span class="tag-hate">Quebra de contrato, causas, fanatismo, morte por ideologia</span></span></div></div>
+
+<h3>EVENTOS DE FACÇÃO</h3>
+<p>A cada <strong>3 sessões</strong>, role 1d6 para cada facção relevante à campanha e some o modificador da Reputação do grupo com ela. O mundo se move com ou sem os personagens.</p>
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Reputação</th><th>Modificador</th><th>Resultado Final</th><th>Evento</th></tr></thead>
+<tbody>
+<tr class="odd"><td>Hostil</td><td>−2</td><td><strong>0–2</strong></td><td>Evento desfavorável</td></tr>
+<tr class="even"><td>Desconfiado</td><td>−1</td><td><strong>3–5</strong></td><td>Evento misto</td></tr>
+<tr class="odd"><td>Neutro</td><td>+0</td><td><strong>6–7</strong></td><td>Evento favorável</td></tr>
+<tr class="even"><td>Respeitado</td><td>+1</td><td><strong>8+</strong></td><td>Grande oportunidade</td></tr>
+<tr class="odd"><td>Honrado</td><td>+2</td><td></td><td></td></tr>
+</tbody>
+</table></div>
+
+<h3>FACÇÕES E ÂNCORAS</h3>
+<ul>
+<li><p><strong>Objetivo ligado a facção</strong> (ex.: "Destruir a Ordem do Vazio"): honrá-lo em sessão concede +1 Determinação quando você age contra os interesses dela.</p></li>
+<li><p><strong>Vínculo com membro de facção:</strong> protegê-lo ou sacrificar-se por ele funciona como Vínculo Íntimo para transferência de Determinação.</p></li>
+<li><p><strong>Limitação Central contra a política da facção:</strong> mantê-la diante de ordem contrária evita Abalo; quebrá-la para agradar a facção causa Abalo — mesmo que a reputação suba.</p></li>
+</ul>
+<blockquote>Reputação alta não é vitória. Reputação baixa não é derrota. Quem é Honrado por todos é, frequentemente, propriedade de todos. Quem é Hostil para metade do mundo, mas fiel às próprias Âncoras, tem uma história que vale ser contada.</blockquote>
+</section>
+
+<section class="level2" id="a-cidade-como-tabuleiro">
+<h2>A CIDADE COMO TABULEIRO</h2>
+<p>A cidade é a dungeon que finge ser segura. Tem mapa (distritos), monstros (interesses), tesouro (favores e informação) e armadilhas (rumores, leis e olhares). Use esta seção para transformar qualquer assentamento em campo de jogo.</p>
+
+<h3>DISTRITOS E SEUS JOGOS</h3>
+<div class="table-wrap"><table class="styled-table">
+<thead><tr class="header"><th>Distrito</th><th>Quem manda</th><th>Moeda real</th><th>Perigo típico</th></tr></thead>
+<tbody>
+<tr class="odd"><td><strong>Alto da Cidade</strong></td><td>Casas Nobres</td><td>Títulos, convites, apadrinhamento</td><td>Um insulto errado vira duelo ou exílio social</td></tr>
+<tr class="even"><td><strong>Mercado</strong></td><td>Mercadores Livres</td><td>Informação, crédito, rotas</td><td>Preços triplicados para quem tem má reputação</td></tr>
+<tr class="odd"><td><strong>Docas / Portões</strong></td><td>Lâmina Cinzenta, contrabandistas</td><td>Passagem, silêncio, músculo</td><td>A Lâmina cobra dívidas com juros físicos</td></tr>
+<tr class="even"><td><strong>Templos e Jardins</strong></td><td>Jardins do Horizonte</td><td>Cura, abrigo, legitimidade moral</td><td>Sua corrupção ou seu Lanto Maligno sendo notados</td></tr>
+<tr class="odd"><td><strong>Subterrâneo</strong></td><td>Ordem do Vazio, ladrões, Despertos exilados</td><td>Segredos, relíquias proibidas</td><td>O que você aprende lá embaixo não se desaprende</td></tr>
+<tr class="even"><td><strong>Alturas / Pontes</strong></td><td>A Teia</td><td>Atalhos, vistas, mensagens rápidas</td><td>Cair de uma ponte que "estava segura ontem"</td></tr>
+</tbody>
+</table></div>
+
+<h3>RUMORES — A MOEDA QUE CIRCULA SOZINHA</h3>
+<p>Rumor é informação com prazo de validade e taxa de erro. Quando o grupo pergunta "o que se fala na cidade?", role ou escolha:</p>
+<ol>
+<li><p>Verdade útil, mas incompleta.</p></li>
+<li><p>Verdade exagerada — o monstro é maior do que é.</p></li>
+<li><p>Mentira plantada por uma facção.</p></li>
+<li><p>Verdade obsoleta — já mudou desde ontem.</p></li>
+<li><p>Fofoca pessoal que revela uma fraqueza de um PNJ.</p></li>
+<li><p>O próprio grupo é o assunto — e não é boa coisa.</p></li>
+</ol>
+<p class="label-soft"><strong>Teste típico:</strong> Presença + Diplomacia (DV 10) numa taverna movimentada rende 1d4 rumores; Velada (Enganação) filtra quais são plantados com Intuição em oposição.</p>
+
+<h3>PRESSÃO URBANA</h3>
+<p>Na cidade, o relógio não é Cansaço — é <strong>atenção</strong>. Ações barulhentas (briga em praça, magia em público, arrombamento) acumulam olhares. Quando o Mestre julgar que a panela ferveu:</p>
+<ul>
+<li><p><strong>1º nível:</strong> guardas fazem perguntas; preços sobem "só hoje".</p></li>
+<li><p><strong>2º nível:</strong> um facção envia emissário — convite, aviso ou ameaça cordial.</p></li>
+<li><p><strong>3º nível:</strong> mandado, multa, expulsão de distrito ou caçada formal.</p></li>
+</ul>
+
+<div class="callout callout--warning">
+<h2>Não deixe a cidade virar menu de loja</h2>
+<p>Cidade não é "vendo minhas tranqueiras, compro poção, durmo". Se o grupo entra numa cidade e nenhuma facção reage, a cidade está morta. Sempre que eles agirem em público, <strong>alguém viu</strong>: um escriba, um menino de recados, uma vidraça que se fecha. A cidade é feita de olhos — use-os.</p>
+</div>
+</section>
+
+<section class="level2" id="cola-social">
+<div class="callout callout--cheat">
+<h2>Cola Ultrarrápida — Toda Cena Social</h2>
+<h3>1. Antes de rolar</h3>
+<p>Pergunte: <strong>existe risco real?</strong> Se não, converse sem dado. Se sim: cada lado declara Postura (Aberta / Pressão / Velada / Analítica).</p>
+<h3>2. O Mergulho</h3>
+<p>Pool = Atributo + 1. Resultado = <strong>dois menores d20 − Perícia</strong>. Menor vence.</p>
+<h3>3. A diferença</h3>
+<p>0–2 empate &middot; 3–5 vitória &middot; 6–10 vitória esmagadora (+ extra) &middot; 11+ dominação (estado social por 1 sessão).</p>
+<h3>4. Depois da cena</h3>
+<p>Aplique estados sociais (teto ±5). Atualize Reputação se a ação foi pública (máx. ±2, exceto traição/atrocidade −5). Pergunte: <strong>quem viu isso?</strong></p>
+</div>
+<div class="callout callout--warning">
+<h2>Não use Pressão como atalho universal</h2>
+<p>Se toda cena social vira Intimidação, o grupo está colecionando Amedrontados — e Amedrontado cede na hora, mas lembra depois. Cidades inteiras já fecharam portas para grupos "eficientes". Variar Postura não é frescura: é sobrevivência política.</p>
+</div>
+</section>
+</div></section>
+
+</main>
+
+<footer class="colophon">
+  <div class="cover-motif" aria-hidden="true"></div>
+  <h2>Fim do Guia</h2>
+  <p>Faces do Abismo &mdash; Sobrevivência &amp; Sociedade.<br>Guia de aprofundamento e cola de mesa para os capítulos de Exploração e Regras Sociais.</p>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('mobileToggle');
+  var nav = document.getElementById('appNav');
+  if(toggle && nav){
+    toggle.addEventListener('click', function(){ nav.classList.toggle('open'); });
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ nav.classList.remove('open'); });
+    });
+  }
+  var printBtn = document.getElementById('printBtn');
+  if(printBtn){ printBtn.addEventListener('click', function(){ window.print(); }); }
+
+  var items = Array.prototype.slice.call(document.querySelectorAll('.nav-item'));
+  var targets = items.map(function(i){ return document.getElementById(i.dataset.target); }).filter(Boolean);
+  if('IntersectionObserver' in window && targets.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var idx = targets.indexOf(entry.target);
+        if(idx === -1) return;
+        if(entry.isIntersecting){
+          items.forEach(function(i){ i.classList.remove('active'); });
+          items[idx].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+    targets.forEach(function(t){ io.observe(t); });
+  }
+})();
+</script>
+
+</body>
+</html>
